@@ -23,6 +23,14 @@ export const ROUTES = [
   { href: "/automation-forever", label: "Automation Forever" },
 ] as const;
 
+/** Kept out of ROUTES so they stay out of the header nav, but still indexed —
+ *  Meta will not approve a WhatsApp Cloud API application without a reachable
+ *  privacy policy URL. */
+export const LEGAL_ROUTES = [
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
+] as const;
+
 export const FOUNDERS = [
   { name: "Yasir", scope: "Marketing, sales" },
   { name: "zEi", scope: "Technology, engineering, product" },

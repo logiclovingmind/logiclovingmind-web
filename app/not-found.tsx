@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <section className="px-(--gutter) py-[clamp(96px,16vw,220px)]">
-      <div className="shell max-w-[680px]">
+      <div className="measure">
         <p className="eyebrow mb-5">404</p>
         <h1 className="font-display display-l">That page does not exist.</h1>
         <p className="mt-6 max-w-[46ch] text-pretty">

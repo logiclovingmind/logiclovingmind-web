@@ -204,6 +204,24 @@
   letter-spacing: -0.01em;
 }
 
+/* Legal list row. The marker is drawn rather than a list-style bullet so it can
+   sit on the first line's optical centre at any wrap width. */
+.legal-item {
+  position: relative;
+  padding-left: 22px;
+  color: var(--color-text-secondary);
+}
+
+.legal-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 10px;
+  height: 1px;
+  background: var(--color-line-emphasis);
+}
+
 /* ─────────────────────────────────────────────────────────────
    Shell rhythm — one definition, never overridden per section
    ───────────────────────────────────────────────────────────── */
@@ -214,6 +232,14 @@
 
 .shell {
   max-width: var(--spacing-content);
+  margin-inline: auto;
+}
+
+/* Reading measure for prose-led pages. Declared here rather than as a Tailwind
+   max-w-* on .shell, because .shell is unlayered and utilities live in
+   @layer utilities — the utility would silently lose the cascade. */
+.measure {
+  max-width: 760px;
   margin-inline: auto;
 }
 

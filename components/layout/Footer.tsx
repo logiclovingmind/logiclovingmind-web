@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Wordmark } from "@/components/brand/Wordmark";
-import { CONTACT, ROUTES, SITE } from "@/content/site";
+import { CONTACT, LEGAL_ROUTES, ROUTES, SITE } from "@/content/site";
 
 export function Footer() {
   return (
@@ -46,6 +46,21 @@ export function Footer() {
           </a>
           <span>{SITE.location}</span>
         </address>
+      </div>
+
+      <div className="shell font-mono mt-[clamp(40px,5vw,64px)] flex flex-wrap items-center gap-x-6 gap-y-3 text-[13px] text-text-tertiary">
+        <span>
+          © {new Date().getFullYear()} {SITE.name}
+        </span>
+        {LEGAL_ROUTES.map((route) => (
+          <Link
+            key={route.href}
+            href={route.href}
+            className="text-text-secondary no-underline hover:text-text"
+          >
+            {route.label}
+          </Link>
+        ))}
       </div>
     </footer>
   );
