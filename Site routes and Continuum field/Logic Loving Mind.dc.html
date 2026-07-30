@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WhatsApp lead automation for real estate developers — Logic Loving Mind</title>
+<meta name="description" content="An operating system that answers every WhatsApp lead in seconds, qualifies buyers and books site visits. Built for real estate companies only. Bangalore." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=satoshi@500,700&amp;display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" />
+<style>
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: #07080A; color: #9CA3A9; font-family: 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  * { box-sizing: border-box; }
+  button { font: inherit; color: inherit; }
+  a { color: #F2F4F5; text-decoration: none; text-underline-offset: 4px; }
+  a:hover { color: #FFFFFF; text-decoration: underline; }
+  :focus-visible { outline: 2px solid #FFFFFF; outline-offset: 2px; border-radius: 2px; }
+  ::selection { background: #F2F4F5; color: #07080A; }
+  @keyframes llmIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="background:#07080A;color:#9CA3A9;font-family:'Instrument Sans',sans-serif;font-size:17px;line-height:1.65;min-height:100vh">
+
+  <a href="#main" style="position:absolute;left:-9999px;top:8px;z-index:80;background:#FFFFFF;color:#07080A;padding:10px 16px;border-radius:2px;font-size:15px" style-focus="left:16px">Skip to content</a>
+
+  <header style="position:sticky;top:0;z-index:60;height:68px;background:rgba(7,8,10,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)">
+    <div style="height:68px;max-width:1440px;margin:0 auto;padding:0 clamp(24px,5vw,72px);display:flex;align-items:center;justify-content:space-between;gap:32px">
+      <button onClick="{{ goHome }}" aria-label="Logic Loving Mind — home" style="display:flex;align-items:center;gap:9px;background:none;border:0;padding:0;cursor:pointer;color:#F2F4F5">
+        <span style="display:block;width:23px;height:23px;background:currentColor;-webkit-mask:url(./mark.svg) no-repeat center/contain;mask:url(./mark.svg) no-repeat center/contain"></span>
+        <span style="display:block;width:198px;height:9.6px;background:currentColor;-webkit-mask:url(./wordmark.svg) no-repeat center/contain;mask:url(./wordmark.svg) no-repeat center/contain"></span>
+      </button>
+
+      <sc-if value="{{ wideNav }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:clamp(18px,2.4vw,34px);font-size:15px">
+          <button onClick="{{ goHome }}" style="position:relative;background:none;border:0;padding:6px 0;cursor:pointer;color:{{ cHome }};transition:color 120ms">Home<span style="position:absolute;left:0;right:0;bottom:-1px;height:1px;background:currentColor;opacity:{{ uHome }}"></span></button>
+          <button onClick="{{ goProducts }}" style="position:relative;background:none;border:0;padding:6px 0;cursor:pointer;color:{{ cProducts }};transition:color 120ms">Products<span style="position:absolute;left:0;right:0;bottom:-1px;height:1px;background:currentColor;opacity:{{ uProducts }}"></span></button>
+          <button onClick="{{ goWhy }}" style="position:relative;background:none;border:0;padding:6px 0;cursor:pointer;color:{{ cWhy }};transition:color 120ms">Why real estate only<span style="position:absolute;left:0;right:0;bottom:-1px;height:1px;background:currentColor;opacity:{{ uWhy }}"></span></button>
+          <button onClick="{{ goAF }}" style="position:relative;background:none;border:0;padding:6px 0;cursor:pointer;color:{{ cAF }};transition:color 120ms">Automation Forever<span style="position:absolute;left:0;right:0;bottom:-1px;height:1px;background:currentColor;opacity:{{ uAF }}"></span></button>
+        </nav>
+        <a href="#book" style="flex:none;display:inline-flex;align-items:center;height:44px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+      </sc-if>
+
+      <sc-if value="{{ narrowNav }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="display:flex;flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;align-items:flex-end;background:none;border:0;cursor:pointer">
+          <span style="display:block;width:22px;height:1px;background:#F2F4F5"></span>
+          <span style="display:block;width:14px;height:1px;background:#F2F4F5"></span>
+        </button>
+      </sc-if>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(255,255,255,0.09);opacity:{{ hairline }};transition:opacity 220ms cubic-bezier(0.4,0,0.2,1)"></div>
+  </header>
+
+  <sc-if value="{{ menuOpen }}">
+    <div role="dialog" aria-modal="true" style="position:fixed;inset:0;z-index:70;background:#07080A;padding:clamp(24px,5vw,72px);display:flex;flex-direction:column">
+      <div style="display:flex;justify-content:flex-end">
+        <button onClick="{{ toggleMenu }}" aria-label="Close menu" style="width:44px;height:44px;background:none;border:0;cursor:pointer;color:#F2F4F5;font-size:22px;line-height:1">&#215;</button>
+      </div>
+      <nav style="display:flex;flex-direction:column;gap:22px;margin-top:clamp(32px,8vh,72px);font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,8vw,40px);letter-spacing:-0.025em;line-height:1.14;color:#F2F4F5">
+        <button onClick="{{ goHome }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;animation:llmIn 360ms cubic-bezier(0.16,1,0.3,1) both">Home</button>
+        <button onClick="{{ goProducts }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;animation:llmIn 360ms 40ms cubic-bezier(0.16,1,0.3,1) both">Products</button>
+        <button onClick="{{ goWhy }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;animation:llmIn 360ms 80ms cubic-bezier(0.16,1,0.3,1) both">Why real estate only</button>
+        <button onClick="{{ goAF }}" style="text-align:left;background:none;border:0;padding:0;cursor:pointer;animation:llmIn 360ms 120ms cubic-bezier(0.16,1,0.3,1) both">Automation Forever</button>
+      </nav>
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:14px">
+        <a href="#book" onClick="{{ toggleMenu }}" style="display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="text-decoration:none">Book a demo</a>
+        <a href="tel:6353980009" style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#9CA3A9">Sales · 6353980009</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <main id="main">
+
+  <!-- ═══════════════ HOME ═══════════════ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div>
+    <section data-screen-label="Home · Hero" style="position:relative;overflow:hidden;min-height:min(76vh,760px);display:flex;flex-direction:column;border-bottom:1px solid rgba(255,255,255,0.09);background:radial-gradient(84% 46% at 50% 104%, color-mix(in oklab, #7C3AFF 22%, transparent) 0%, transparent 62%), radial-gradient(48% 30% at 50% 100%, color-mix(in oklab, #230A52 50%, transparent) 0%, transparent 72%), #07080A">
+      <div style="position:relative;z-index:2;padding:clamp(56px,11vh,120px) clamp(24px,5vw,72px) clamp(32px,5vh,56px);max-width:1000px;margin:0 auto;text-align:center">
+        <p style="margin:0 0 clamp(24px,4vh,40px);font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Real estate only · HSR Layout, Bangalore</p>
+        <h1 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(40px,6.4vw,76px);line-height:0.96;letter-spacing:-0.035em;color:#F2F4F5;text-wrap:balance;max-width:22ch;margin-left:auto;margin-right:auto">Replies in five seconds. Qualifies. Books the site visit.</h1>
+        <p style="margin:clamp(20px,3vh,28px) auto 0;max-width:60ch;font-size:clamp(17px,1.4vw,19px);line-height:1.6;color:#9CA3A9;text-wrap:pretty">An operating system that runs customer conversations for real estate companies — continuously, in natural language, on infrastructure you own.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 20px;justify-content:center;align-items:center;margin-top:clamp(28px,4vh,40px)">
+          <a href="#book" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+          <a href="https://wa.me/919978445088?text=Show%20me%20the%20live%20demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;height:48px;color:#9CA3A9;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="color:#F2F4F5;text-decoration:none">See the live demo on WhatsApp<span style="display:inline-block;transition:transform 120ms cubic-bezier(0.4,0,0.2,1)">&#8594;</span></a>
+        </div>
+      </div>
+      <div style="position:relative;flex:1 1 auto;min-height:min(34vh,300px)">
+        <canvas ref="{{ fieldRef }}" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;display:block;-webkit-mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 26%, #000 58%);mask-image:linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.55) 26%, #000 58%)"></canvas>
+      </div>
+      <div aria-hidden="true" style="position:absolute;inset:0;z-index:3;pointer-events:none;opacity:0.03;background:url(./grain.svg) repeat"></div>
+    </section>
+
+    <section data-screen-label="Home · Not" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 200px;max-width:280px">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Positioning</p>
+        </div>
+        <div style="flex:1 1 460px;animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <p style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,4.2vw,56px);line-height:1.02;letter-spacing:-0.03em;color:#F2F4F5">Not a chatbot.<br />Not a marketing agency.<br />Not an automation agency.<br />Not an AI wrapper.</p>
+          <p style="margin:clamp(24px,3vw,36px) 0 0;max-width:56ch;color:#9CA3A9;text-wrap:pretty">It is an operating system engineered for one industry, deployed on accounts and infrastructure that stay in your name. Three pilot seats exist. Two people built it.</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · Capabilities" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:#0D0F12">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+        <div style="flex:1 1 300px;max-width:420px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">What the system does</p>
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">Eight functions, running without a break.</h2>
+          <p style="margin:24px 0 0;color:#9CA3A9;text-wrap:pretty">Trained specifically on real estate conversations. Not a general-purpose assistant pointed at your inbox.</p>
+        </div>
+        <div style="flex:1 1 520px;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">RESPONSE</span><span style="flex:1 1 260px;color:#F2F4F5">Replies instantly, 24/7 — including at 2 a.m.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">CONVERSATION</span><span style="flex:1 1 260px;color:#F2F4F5">Natural, human-like exchanges in English.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">QUALIFICATION</span><span style="flex:1 1 260px;color:#F2F4F5">Qualifies buyers on budget, possession timeline and intent.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">COLLECTION</span><span style="flex:1 1 260px;color:#F2F4F5">Collects the customer information your team asks for.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">RECORD</span><span style="flex:1 1 260px;color:#F2F4F5">Stores structured lead data, not chat transcripts.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">BOOKING</span><span style="flex:1 1 260px;color:#F2F4F5">Books site visits into Google Calendar automatically.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">SYNC</span><span style="flex:1 1 260px;color:#F2F4F5">Synchronizes conversations so the team sees one thread.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;align-items:baseline;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">HANDOFF</span><span style="flex:1 1 260px;color:#F2F4F5">Hands humans warm, qualified, structured leads.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · Progression" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) 0">
+      <div style="max-width:1200px;margin:0 auto;padding:0 clamp(24px,5vw,72px)">
+        <div style="display:flex;flex-wrap:wrap;gap:clamp(24px,4vw,72px);align-items:flex-end">
+          <h2 style="flex:1 1 420px;margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.2vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;max-width:24ch">Three times work stopped being repetitive.</h2>
+          <p style="flex:1 1 280px;margin:0;max-width:44ch;color:#9CA3A9;text-wrap:pretty">Each tier is a stage in the same progression. The pattern is not new; the third stage is.</p>
+        </div>
+      </div>
+      <div style="margin-top:clamp(40px,6vw,80px);display:flex;flex-wrap:wrap;gap:1px;background:rgba(255,255,255,0.09);border-top:1px solid rgba(255,255,255,0.09);border-bottom:1px solid rgba(255,255,255,0.09)">
+        <div style="flex:1 1 300px;padding:clamp(32px,4vw,56px) clamp(24px,3vw,40px);background:radial-gradient(110% 70% at 50% 0%, color-mix(in oklab, #FF3B14 12%, transparent) 0%, transparent 66%), #07080A">
+          <p style="margin:0 0 auto;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#FF7A45">Fire · 3000 BCE</p>
+          <p style="margin:clamp(40px,7vw,88px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.2;letter-spacing:-0.02em;color:#F2F4F5">Heat became a tool</p>
+          <p style="margin:12px 0 0;font-size:15px;line-height:1.55;color:#9CA3A9">Work that took a day took an hour. The first time output stopped tracking effort.</p>
+        </div>
+        <div style="flex:1 1 300px;padding:clamp(32px,4vw,56px) clamp(24px,3vw,40px);background:radial-gradient(110% 70% at 50% 0%, color-mix(in oklab, #1E6BFF 12%, transparent) 0%, transparent 66%), #07080A">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4FC3FF">Electricity · 1879</p>
+          <p style="margin:clamp(40px,7vw,88px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.2;letter-spacing:-0.02em;color:#F2F4F5">Power became continuous</p>
+          <p style="margin:12px 0 0;font-size:15px;line-height:1.55;color:#9CA3A9">Machines ran through the night. Availability stopped being a human schedule.</p>
+        </div>
+        <div style="flex:1 1 300px;padding:clamp(32px,4vw,56px) clamp(24px,3vw,40px);background:radial-gradient(110% 70% at 50% 0%, color-mix(in oklab, #7C3AFF 12%, transparent) 0%, transparent 66%), #07080A">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#B58CFF">Intelligent systems · Now</p>
+          <p style="margin:clamp(40px,7vw,88px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.2;letter-spacing:-0.02em;color:#F2F4F5">Judgement became repeatable</p>
+          <p style="margin:12px 0 0;font-size:15px;line-height:1.55;color:#9CA3A9">A conversation is answered, qualified and recorded the same way every time.</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · IZI" style="position:relative;border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:radial-gradient(90% 62% at 22% 0%, color-mix(in oklab, #FF3B14 13%, transparent) 0%, transparent 64%), #07080A">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 340px;max-width:520px;border-top:1px solid #FF3B14;padding-top:clamp(24px,3vw,32px)">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#FF7A45">Standard · Fire</p>
+          <h2 style="margin:clamp(28px,4vw,44px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">IZI</h2>
+          <p style="margin:10px 0 0;font-size:clamp(19px,1.6vw,22px);line-height:1.35;letter-spacing:-0.01em;color:#9CA3A9">Ignite your business.</p>
+          <p style="margin:20px 0 0;max-width:48ch;font-size:15px;line-height:1.55;color:#9CA3A9;text-wrap:pretty">Sumerian for fire. It sounds like “easy” because the first deployment should be. WhatsApp Cloud API, the conversation agent, Logic Loving Mind OS on your VPS, calendar booking.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:clamp(28px,3vw,36px)">
+            <a href="#book" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+            <button onClick="{{ goProducts }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="color:#F2F4F5">Compare tiers <span>&#8594;</span></button>
+          </div>
+        </div>
+        <div style="flex:1 1 380px;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;font-variant-numeric:tabular-nums;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SETUP</span><span style="color:#F2F4F5">₹1.5 lakh</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SUPPORT</span><span style="color:#F2F4F5">₹1 lakh / year</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">USERS</span><span style="color:#F2F4F5">5–15</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">CONVERSATIONS</span><span style="color:#F2F4F5">100–500 / day</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">MESSAGES</span><span style="color:#F2F4F5">1,000–3,000 / day</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">LANGUAGE</span><span style="color:#F2F4F5">English</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · EON" style="position:relative;border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:radial-gradient(90% 62% at 22% 0%, color-mix(in oklab, #1E6BFF 13%, transparent) 0%, transparent 64%), #07080A">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 340px;max-width:520px;border-top:1px solid #1E6BFF;padding-top:clamp(24px,3vw,32px)">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4FC3FF">Premium · Electricity</p>
+          <h2 style="margin:clamp(28px,4vw,44px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">EON</h2>
+          <p style="margin:10px 0 0;font-size:clamp(19px,1.6vw,22px);line-height:1.35;letter-spacing:-0.01em;color:#9CA3A9">Enter a new era, power your business.</p>
+          <p style="margin:20px 0 0;max-width:48ch;font-size:15px;line-height:1.55;color:#9CA3A9;text-wrap:pretty">Named for the era electricity opened. Everything in IZI plus a branded OS, dashboard, sales pipeline, analytics, audit logs, live WhatsApp sync, human handoff, inventory across multiple RERA projects, VPN-secured deployment, daily backups, two-factor authentication.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:clamp(28px,3vw,36px)">
+            <a href="#book" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+            <button onClick="{{ goProducts }}" style="display:inline-flex;align-items:center;gap:8px;height:48px;background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="color:#F2F4F5">Compare tiers <span>&#8594;</span></button>
+          </div>
+        </div>
+        <div style="flex:1 1 380px;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;font-variant-numeric:tabular-nums;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SETUP</span><span style="color:#F2F4F5">₹4.5 lakh</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">PRIORITY SUPPORT</span><span style="color:#F2F4F5">₹3.5 lakh</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">USERS</span><span style="color:#F2F4F5">30–100</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">CONVERSATIONS</span><span style="color:#F2F4F5">500–2,000 / day</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">MESSAGES</span><span style="color:#F2F4F5">20,000–50,000 / day</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SECURITY</span><span style="color:#F2F4F5">VPN · 2FA · backups</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · OMNI" style="position:relative;border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:radial-gradient(90% 62% at 22% 0%, color-mix(in oklab, #7C3AFF 13%, transparent) 0%, transparent 64%), #07080A">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 340px;max-width:520px;border-top:1px solid #7C3AFF;padding-top:clamp(24px,3vw,32px)">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#B58CFF">Enterprise · Intelligent systems</p>
+          <h2 style="margin:clamp(28px,4vw,44px) 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">OMNI</h2>
+          <p style="margin:10px 0 0;font-size:clamp(19px,1.6vw,22px);line-height:1.35;letter-spacing:-0.01em;color:#9CA3A9">All. Every. Universal.</p>
+          <p style="margin:20px 0 0;max-width:48ch;font-size:15px;line-height:1.55;color:#9CA3A9;text-wrap:pretty">Latin for all. Everything in EON with unlimited users, unlimited scalability, enterprise security, and implementation and support built to your operation.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:clamp(28px,3vw,36px)">
+            <a href="tel:6353980009" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;border:1px solid rgba(255,255,255,0.18);border-radius:2px;color:#F2F4F5;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="border-color:rgba(255,255,255,0.32);background:rgba(255,255,255,0.04);text-decoration:none">Contact sales</a>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">6353980009</span>
+          </div>
+        </div>
+        <div style="flex:1 1 380px;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;font-variant-numeric:tabular-nums;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">PRICING</span><span style="color:#F2F4F5">Custom</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">USERS</span><span style="color:#F2F4F5">Unlimited</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SCALABILITY</span><span style="color:#F2F4F5">Unlimited</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SECURITY</span><span style="color:#F2F4F5">Enterprise</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">IMPLEMENTATION</span><span style="color:#F2F4F5">Custom</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SUPPORT</span><span style="color:#F2F4F5">Custom</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · Ownership" style="position:relative;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:#0D0F12">
+      <div aria-hidden="true" style="position:absolute;right:-14%;top:-22%;width:min(640px,72vw);height:min(640px,72vw);opacity:0.04;background:#FFFFFF;-webkit-mask:url(./mark.svg) no-repeat center/contain;mask:url(./mark.svg) no-repeat center/contain;pointer-events:none"></div>
+      <div style="position:relative;max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 440px;max-width:640px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Ownership</p>
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.2vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;max-width:22ch">You own the accounts. You pay the vendors directly.</h2>
+          <p style="margin:24px 0 0;max-width:58ch;color:#9CA3A9;text-wrap:pretty">We set up Meta Business, WhatsApp Cloud API, the AI accounts and the VPS. All of it is registered to you. Meta, token and hosting costs go from you to them, at cost, with no markup added by us. Nothing is resold and nothing is locked.</p>
+        </div>
+        <div style="flex:1 1 300px;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">META BUSINESS</span><span style="color:#F2F4F5">Yours</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">WHATSAPP API</span><span style="color:#F2F4F5">Yours</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">AI ACCOUNTS</span><span style="color:#F2F4F5">Yours</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">VPS</span><span style="color:#F2F4F5">Yours</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">MARKUP</span><span style="color:#F2F4F5">None</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Home · Automation Forever" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 200px;max-width:280px">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Automation Forever</p>
+          <p style="margin:20px 0 0;font-family:'IBM Plex Mono',monospace;font-size:32px;line-height:1.1;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:#F2F4F5">3 seats</p>
+        </div>
+        <div style="flex:1 1 460px">
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5;max-width:26ch">Three companies run the platform without paying a setup fee.</h2>
+          <p style="margin:24px 0 0;max-width:58ch;color:#9CA3A9;text-wrap:pretty">A ₹50,000 commitment deposit holds a seat. If the system does not produce 30 qualified buyer conversations and 10 site-visit-intent prospects within 30 days, the deposit is returned. If it does, you continue on six months of support at ₹50,000 — separate from the deposit, which is never credited against it.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px 24px;align-items:center;margin-top:clamp(28px,3vw,36px)">
+            <button onClick="{{ goAF }}" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;border:1px solid rgba(255,255,255,0.18);border-radius:2px;background:none;cursor:pointer;color:#F2F4F5;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="border-color:rgba(255,255,255,0.32);background:rgba(255,255,255,0.04)">Apply for Automation Forever</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book" data-screen-label="Home · Close" style="padding:clamp(72px,11vw,160px) clamp(24px,5vw,72px);text-align:center">
+      <div style="max-width:760px;margin:0 auto">
+        <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;text-wrap:balance">See it answer a lead while you watch.</h2>
+        <p style="margin:20px auto 0;max-width:52ch;color:#9CA3A9;text-wrap:pretty">Twenty minutes. We run your own lead scenario through the system and you read the transcript it produces.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 20px;justify-content:center;align-items:center;margin-top:clamp(28px,4vw,40px)">
+          <a href="https://wa.me/919978445088?text=Show%20me%20the%20live%20demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+          <a href="tel:6353980009" style="display:inline-flex;align-items:center;gap:8px;height:48px;color:#9CA3A9;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em" style-hover="color:#F2F4F5;text-decoration:none">or call 6353980009</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ═══════════════ PRODUCTS ═══════════════ -->
+  <sc-if value="{{ isProducts }}">
+  <div>
+    <section data-screen-label="Products · Head" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(56px,9vw,120px) clamp(24px,5vw,72px) clamp(48px,7vw,88px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-end">
+        <div style="flex:1 1 440px;max-width:640px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Products</p>
+          <h1 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;max-width:24ch">Three tiers of the same system, sized to your lead volume.</h1>
+        </div>
+        <p style="flex:1 1 280px;margin:0;max-width:42ch;color:#9CA3A9;text-wrap:pretty">The engine is identical. What changes is capacity, the surface your team works in, and how much of your operation the system holds.</p>
+      </div>
+    </section>
+
+    <section data-screen-label="Products · Comparison" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(48px,7vw,96px) clamp(24px,5vw,72px) clamp(64px,10vw,160px)">
+      <div style="max-width:1200px;margin:0 auto;overflow-x:auto">
+        <div role="table" style="min-width:760px;font-size:15px">
+          <div role="row" style="position:sticky;top:68px;z-index:5;display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;background:#07080A">
+            <div role="columnheader" style="padding:22px 20px 14px 0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.18)">Specification</div>
+            <div role="columnheader" style="padding:22px 20px 14px;border-top:1px solid #FF3B14;border-bottom:1px solid rgba(255,255,255,0.18);font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#FF7A45">IZI</div>
+            <div role="columnheader" style="padding:22px 20px 14px;border-top:1px solid #1E6BFF;border-bottom:1px solid rgba(255,255,255,0.18);font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4FC3FF">EON</div>
+            <div role="columnheader" style="padding:22px 20px 14px;border-top:1px solid #7C3AFF;border-bottom:1px solid rgba(255,255,255,0.18);font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#B58CFF">OMNI</div>
+          </div>
+
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Setup</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">₹1.5 lakh</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">₹4.5 lakh</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">Custom</div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Support</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">₹1 lakh / year</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">₹3.5 lakh</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">Custom</div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Users</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">5–15</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">30–100</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">Unlimited</div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Conversations / day</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">100–500</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">500–2,000</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">Unlimited</div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Messages / day</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">1,000–3,000</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;font-variant-numeric:tabular-nums;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">20,000–50,000</div><div role="cell" style="padding:15px 20px;font-family:'IBM Plex Mono',monospace;color:#F2F4F5;border-bottom:1px solid rgba(255,255,255,0.09)">Unlimited</div></div>
+
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">WhatsApp Cloud API setup</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">AI conversation agent</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Logic Loving Mind OS</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">VPS deployment</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Google Calendar booking</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Custom branded OS</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Advanced dashboard</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Sales pipeline</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Analytics and audit logs</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Live WhatsApp synchronization</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Human handoff</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Inventory management</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Multiple RERA project support</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">VPN-secured deployment · 2FA · daily backups</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+          <div role="row" style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr"><div role="cell" style="padding:15px 20px 15px 0;color:#9CA3A9;border-bottom:1px solid rgba(255,255,255,0.09)">Enterprise security · custom implementation</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;color:#656B72;border-bottom:1px solid rgba(255,255,255,0.09)">&#8212;</div><div role="cell" style="padding:15px 20px;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="display:inline-block;width:7px;height:7px;background:#F2F4F5"></span></div></div>
+        </div>
+      </div>
+      <div style="max-width:1200px;margin:clamp(32px,4vw,48px) auto 0;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center">
+        <a href="#book" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+        <p style="margin:0;max-width:52ch;font-size:15px;color:#656B72">You pay Meta, AI token and hosting costs directly, at cost. Accounts are registered in your name.</p>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ═══════════════ WHY REAL ESTATE ONLY ═══════════════ -->
+  <sc-if value="{{ isWhy }}">
+  <div>
+    <section data-screen-label="Why · Head" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(56px,9vw,120px) clamp(24px,5vw,72px) clamp(48px,7vw,88px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-end">
+        <div style="flex:1 1 440px;max-width:680px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Why real estate only</p>
+          <h1 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;max-width:24ch">A generic assistant learns generic conversation.</h1>
+        </div>
+        <p style="flex:1 1 280px;margin:0;max-width:42ch;color:#9CA3A9;text-wrap:pretty">This one was built around how property is actually sold in India: inventory, RERA projects, budgets, possession timelines, and getting someone to the site.</p>
+      </div>
+    </section>
+
+    <section data-screen-label="Why · Argument" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:#0D0F12">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+        <div style="flex:1 1 280px;max-width:360px">
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">What specialization actually changes.</h2>
+        </div>
+        <div style="flex:1 1 520px;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">QUALIFICATION</span><span style="flex:1 1 260px;color:#9CA3A9">It asks for budget band, possession timeline, configuration and location preference, in the order a good salesperson would, and it stops when it has enough.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">INVENTORY</span><span style="flex:1 1 260px;color:#9CA3A9">It answers on real units — tower, floor, facing, carpet area — instead of sending a brochure and hoping.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">RERA PROJECTS</span><span style="flex:1 1 260px;color:#9CA3A9">Multiple projects, each with its own inventory, pricing and approvals, held separately so a buyer never gets the wrong project's numbers.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">SITE VISITS</span><span style="flex:1 1 260px;color:#9CA3A9">The close of a property conversation is a visit, not a form fill. The system proposes slots, confirms, and puts it on the calendar.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">BUYER BEHAVIOUR</span><span style="flex:1 1 260px;color:#9CA3A9">Property buyers go quiet for days, return at midnight, and ask the same three questions. The system is built for that rhythm.</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px 24px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:0 0 190px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">HANDOFF</span><span style="flex:1 1 260px;color:#9CA3A9">Your team opens a lead that already has a budget, a timeline and a booked visit. Nobody starts from “hi.”</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="Why · Close" style="padding:clamp(72px,11vw,160px) clamp(24px,5vw,72px);text-align:center">
+      <div style="max-width:760px;margin:0 auto">
+        <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;text-wrap:balance">Bring us a lead you lost last week.</h2>
+        <p style="margin:20px auto 0;max-width:52ch;color:#9CA3A9;text-wrap:pretty">We will run it through the system on the call and you can judge the transcript yourself.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 20px;justify-content:center;margin-top:clamp(28px,4vw,40px)">
+          <a href="https://wa.me/919978445088?text=Show%20me%20the%20live%20demo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;color:#07080A;border-radius:2px;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px);text-decoration:none">Book a demo</a>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ═══════════════ AUTOMATION FOREVER ═══════════════ -->
+  <sc-if value="{{ isAF }}">
+  <div>
+    <section data-screen-label="AF · Head" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(56px,9vw,120px) clamp(24px,5vw,72px) clamp(48px,7vw,88px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px);align-items:flex-end">
+        <div style="flex:1 1 440px;max-width:680px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Automation Forever · Limited launch</p>
+          <h1 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(34px,4.6vw,56px);line-height:1;letter-spacing:-0.03em;color:#F2F4F5;max-width:22ch">Three seats. No setup fee. One condition.</h1>
+        </div>
+        <div style="flex:1 1 240px">
+          <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:32px;line-height:1.1;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:#F2F4F5">3 seats</p>
+          <p style="margin:8px 0 0;font-size:15px;color:#656B72">Selected companies only. We are choosing, not selling.</p>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="AF · Contract" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px);background:#0D0F12">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+        <div style="flex:1 1 340px;max-width:460px">
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">The deposit is a checkable contract, not a purchase.</h2>
+          <p style="margin:24px 0 0;max-width:52ch;color:#9CA3A9;text-wrap:pretty">You pay ₹50,000 to hold a seat. We run a live 30-day pilot. If the two outcomes below are not met, the deposit comes back. If they are met, you continue on six months of support at ₹50,000 — a separate figure. The deposit is never credited against support.</p>
+        </div>
+        <div style="flex:1 1 420px;align-self:flex-start;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;font-variant-numeric:tabular-nums;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">SETUP FEE</span><span style="color:#F2F4F5">₹0</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">COMMITMENT DEPOSIT</span><span style="color:#F2F4F5">₹50,000 · refundable</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">PILOT</span><span style="color:#F2F4F5">30 days, live</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">OUTCOME 1</span><span style="color:#F2F4F5">30 qualified conversations</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">OUTCOME 2</span><span style="color:#F2F4F5">10 site-visit-intent prospects</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">IF NOT MET</span><span style="color:#F2F4F5">Deposit returned</span></div>
+          <div style="display:flex;gap:16px;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="color:#656B72">IF MET · SUPPORT</span><span style="color:#F2F4F5">₹50,000 / six months</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section data-screen-label="AF · Eligibility" style="border-bottom:1px solid rgba(255,255,255,0.09);padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+        <div style="flex:1 1 300px;max-width:400px">
+          <p style="margin:0 0 20px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Eligibility</p>
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">Check yourself before you apply.</h2>
+          <p style="margin:24px 0 0;max-width:44ch;color:#9CA3A9;text-wrap:pretty">All three are required. Below any of them the 30-day outcomes are not reachable and the pilot wastes your month and ours.</p>
+        </div>
+        <div style="flex:1 1 440px;border-top:1px solid rgba(255,255,255,0.18);animation:llmIn 620ms cubic-bezier(0.16,1,0.3,1) both" data-reveal>
+          <div style="display:flex;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:none;display:inline-block;width:7px;height:7px;background:#F2F4F5"></span><span style="color:#F2F4F5">Minimum 100 leads a month</span></div>
+          <div style="display:flex;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:none;display:inline-block;width:7px;height:7px;background:#F2F4F5"></span><span style="color:#F2F4F5">Minimum 2 people on the sales team</span></div>
+          <div style="display:flex;gap:20px;align-items:baseline;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.09)"><span style="flex:none;display:inline-block;width:7px;height:7px;background:#F2F4F5"></span><span style="color:#F2F4F5">Active WhatsApp communication with buyers</span></div>
+          <div style="margin-top:clamp(28px,4vw,40px);display:flex;flex-wrap:wrap;gap:24px 48px">
+            <div style="flex:1 1 160px"><p style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Included</p><p style="margin:10px 0 0;font-size:15px;line-height:1.55;color:#9CA3A9">30-day live pilot · priority support · direct founder access · case study opportunity</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="book" data-screen-label="AF · Application" style="padding:clamp(64px,10vw,160px) clamp(24px,5vw,72px)">
+      <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,80px)">
+        <div style="flex:1 1 280px;max-width:380px">
+          <h2 style="margin:0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.08;letter-spacing:-0.025em;color:#F2F4F5">Apply for a seat</h2>
+          <p style="margin:20px 0 0;max-width:40ch;color:#9CA3A9;text-wrap:pretty">Five fields. A founder reads every application and answers within one working day.</p>
+          <p style="margin:24px 0 0;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">Or talk to the system first<br /><a href="https://wa.me/919978445088?text=Show%20me%20the%20live%20demo" target="_blank" rel="noopener" style="color:#9CA3A9">wa.me/919978445088 &#8594;</a></p>
+        </div>
+        <div style="flex:1 1 480px;max-width:560px">
+          <sc-if value="{{ applied }}">
+            <div style="border:1px solid rgba(255,255,255,0.18);border-radius:4px;padding:clamp(24px,4vw,40px);box-shadow:inset 0 1px 0 rgba(255,255,255,0.06)">
+              <p style="margin:0;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#656B72">Application sent</p>
+              <p style="margin:16px 0 0;font-family:'Satoshi',sans-serif;font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.2;letter-spacing:-0.02em;color:#F2F4F5">We have it. You will hear from Yasir or zEi within one working day.</p>
+              <button onClick="{{ resetApply }}" style="margin-top:24px;background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="color:#F2F4F5">Send another &#8594;</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ notApplied }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ onApply }}" style="display:flex;flex-direction:column;gap:20px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label for="af-name" style="font-size:15px;color:#9CA3A9">Your name <span style="color:#656B72">(required)</span></label>
+              <input id="af-name" name="name" required style="height:48px;padding:0 14px;background:#14171B;border:1px solid rgba(255,255,255,0.09);border-radius:2px;color:#F2F4F5;font-family:'Instrument Sans',sans-serif;font-size:17px" style-focus="border-color:rgba(255,255,255,0.32)" />
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label for="af-company" style="font-size:15px;color:#9CA3A9">Company <span style="color:#656B72">(required)</span></label>
+              <input id="af-company" name="company" required style="height:48px;padding:0 14px;background:#14171B;border:1px solid rgba(255,255,255,0.09);border-radius:2px;color:#F2F4F5;font-family:'Instrument Sans',sans-serif;font-size:17px" style-focus="border-color:rgba(255,255,255,0.32)" />
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <label for="af-phone" style="font-size:15px;color:#9CA3A9">WhatsApp number <span style="color:#656B72">(required)</span></label>
+              <input id="af-phone" name="phone" type="tel" inputmode="tel" required style="height:48px;padding:0 14px;background:#14171B;border:1px solid rgba(255,255,255,0.09);border-radius:2px;color:#F2F4F5;font-family:'IBM Plex Mono',monospace;font-size:16px;font-variant-numeric:tabular-nums" style-focus="border-color:rgba(255,255,255,0.32)" />
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:20px">
+              <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:8px">
+                <label for="af-leads" style="font-size:15px;color:#9CA3A9">Leads per month</label>
+                <input id="af-leads" name="leads" type="number" min="0" step="10" placeholder="100" style="height:48px;padding:0 14px;background:#14171B;border:1px solid rgba(255,255,255,0.09);border-radius:2px;color:#F2F4F5;font-family:'IBM Plex Mono',monospace;font-size:16px;font-variant-numeric:tabular-nums" style-focus="border-color:rgba(255,255,255,0.32)" />
+              </div>
+              <div style="flex:1 1 180px;display:flex;flex-direction:column;gap:8px">
+                <label for="af-team" style="font-size:15px;color:#9CA3A9">Sales team size</label>
+                <input id="af-team" name="team" type="number" min="0" step="1" placeholder="2" style="height:48px;padding:0 14px;background:#14171B;border:1px solid rgba(255,255,255,0.09);border-radius:2px;color:#F2F4F5;font-family:'IBM Plex Mono',monospace;font-size:16px;font-variant-numeric:tabular-nums" style-focus="border-color:rgba(255,255,255,0.32)" />
+            </div>
+            </div>
+            <sc-if value="{{ formError }}">
+              <p role="alert" aria-live="polite" style="margin:0;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.01em;color:#FF7A45">{{ formError }}</p>
+            </sc-if>
+            <button type="submit" style="align-self:flex-start;display:inline-flex;align-items:center;height:48px;padding:0 24px;background:#FFFFFF;border:0;border-radius:2px;color:#07080A;cursor:pointer;font-family:'Satoshi',sans-serif;font-weight:500;font-size:16px" style-hover="background:#E8EAEB;transform:translateY(-1px)">Apply for Automation Forever</button>
+          </form>
+          </sc-if>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  </main>
+
+  <footer style="border-top:1px solid rgba(255,255,255,0.09);padding:clamp(48px,7vw,88px) clamp(24px,5vw,72px) clamp(40px,5vw,64px)">
+    <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:clamp(32px,5vw,72px)">
+      <div style="flex:1 1 300px;max-width:380px">
+        <span style="display:block;width:min(240px,100%);height:11.6px;background:#656B72;-webkit-mask:url(./wordmark.svg) no-repeat left center/contain;mask:url(./wordmark.svg) no-repeat left center/contain"></span>
+        <p style="margin:20px 0 0;font-size:15px;line-height:1.55;color:#656B72;max-width:34ch">Intelligent operating systems that run customer conversations for real estate companies.</p>
+      </div>
+      <nav style="flex:1 1 180px;display:flex;flex-direction:column;gap:12px;font-size:15px;align-items:flex-start">
+        <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9" style-hover="color:#F2F4F5">Home</button>
+        <button onClick="{{ goProducts }}" style="background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9" style-hover="color:#F2F4F5">Products</button>
+        <button onClick="{{ goWhy }}" style="background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9" style-hover="color:#F2F4F5">Why real estate only</button>
+        <button onClick="{{ goAF }}" style="background:none;border:0;padding:0;cursor:pointer;color:#9CA3A9" style-hover="color:#F2F4F5">Automation Forever</button>
+      </nav>
+      <div style="flex:1 1 260px;display:flex;flex-direction:column;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:0.01em;color:#656B72">
+        <a href="tel:6353980009" style="color:#9CA3A9;font-variant-numeric:tabular-nums">6353980009 · sales</a>
+        <a href="mailto:hey@logiclovingmind.com" style="color:#9CA3A9">hey@logiclovingmind.com</a>
+        <a href="mailto:support@logiclovingmind.com" style="color:#9CA3A9">support@logiclovingmind.com</a>
+        <a href="https://wa.me/919978445088?text=Show%20me%20the%20live%20demo" target="_blank" rel="noopener" style="color:#9CA3A9">Live demo on WhatsApp</a>
+        <span>HSR Layout, Bangalore</span>
+      </div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;glowIntensity&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:100,&quot;min&quot;:40,&quot;max&quot;:170,&quot;step&quot;:5,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero field&quot;},&quot;lobeCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:3,&quot;max&quot;:9,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero field&quot;},&quot;startRoute&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;home&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;products&quot;,&quot;why&quot;,&quot;af&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Navigation&quot;}}">
+class Component extends DCLogic {
+  state = { route: this.props.startRoute || 'home', menu: false, scrolled: false, applied: false, error: '', wide: true };
+  fieldRef = React.createRef();
+
+  componentDidMount() {
+    this.onScroll = () => {
+      const s = window.scrollY > 24;
+      if (s !== this.state.scrolled) this.setState({ scrolled: s });
+    };
+    this.onResize = () => {
+      const w = window.innerWidth >= 1000;
+      if (w !== this.state.wide) this.setState({ wide: w });
+    };
+    this.onKey = (e) => { if (e.key === 'Escape' && this.state.menu) this.setState({ menu: false }); };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onResize);
+    window.addEventListener('keydown', this.onKey);
+    this.onResize(); this.onScroll();
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.startField();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('pointermove', this.onMove);
+    cancelAnimationFrame(this.raf);
+    if (this.io) this.io.disconnect();
+  }
+
+  startField() {
+    cancelAnimationFrame(this.raf);
+    this.f = null;
+    {
+      const cv = this.fieldRef.current;
+      if (!cv || this.state.route !== 'home') return;
+      if (this.reduced || window.innerWidth < 768 || (navigator.hardwareConcurrency || 8) <= 1) return;
+      let ctx;
+      try { ctx = cv.getContext('2d'); } catch (e) { return; }
+      if (!ctx) return;
+
+      const n = Math.max(3, Math.min(9, Math.round(this.props.lobeCount ?? 5)));
+      const L = [];
+      for (let i = 0; i < n; i++) {
+        L.push({
+          x: 0.5 + Math.sin(i * 2.399) * 0.34,
+          y: 0.74 + Math.cos(i * 1.913) * 0.18,
+          r: 0.34 + (((i * 17) % 11) / 11) * 0.3,
+          sp: 0.05 + (((i * 7) % 13) / 13) * 0.07,
+          ph: i * 1.618
+        });
+      }
+      this.f = { ctx, cv, L };
+      if (!this.onMove) {
+        this.onMove = (ev) => {
+          const c = this.f && this.f.cv; if (!c) return;
+          const r = c.getBoundingClientRect();
+          this.mx = ev.clientX - r.left; this.my = ev.clientY - r.top;
+        };
+        window.addEventListener('pointermove', this.onMove, { passive: true });
+      }
+      this.vis = true;
+      if (this.io) this.io.disconnect();
+      this.io = new IntersectionObserver((es) => { this.vis = es[0].isIntersecting; }, { threshold: 0 });
+      this.io.observe(cv);
+      this.t0 = performance.now();
+      this.loop();
+    }
+  }
+
+  loop = () => {
+    this.raf = requestAnimationFrame(this.loop);
+    const f = this.f; if (!f || !this.vis || document.hidden) return;
+    const { ctx, cv, L } = f;
+    const w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    const dpr = Math.min(1.5, window.devicePixelRatio || 1);
+    if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    const t = (performance.now() - this.t0) / 1000;
+    const host = cv.parentElement.getBoundingClientRect();
+    const raw = Math.min(1, Math.max(0, (-host.top + window.innerHeight * 0.25) / Math.max(1, host.height + window.innerHeight * 0.25)));
+    let p = raw * 2.1 + Math.sin(t * 0.11) * 0.06 + 0.05;
+    p = Math.max(0, Math.min(2, p));
+    const ez = (x) => { const c = Math.min(1, Math.max(0, x)); return c * c * (3 - 2 * c); };
+    const w2 = ez(p - 1);
+
+    const core = [124, 58, 255], glow = [181, 140, 255];
+    const rgba = (c, a) => 'rgba(' + (c[0] | 0) + ',' + (c[1] | 0) + ',' + (c[2] | 0) + ',' + a + ')';
+    const gain = (this.props.glowIntensity ?? 100) / 100;
+    const base = Math.min(w, h) * 1.2;
+
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = 0; i < L.length; i++) {
+      const o = L[i];
+      const breathe = 0.7 + 0.3 * Math.sin(t * o.sp * 2.3 + o.ph);
+      let cx = (o.x + Math.sin(t * o.sp + o.ph) * 0.07) * w;
+      let cy = (o.y + Math.cos(t * o.sp * 0.8 + o.ph * 1.7) * 0.05 * (1 - w2 * 0.5)) * h;
+      if (typeof this.mx === 'number') {
+        const dx = this.mx - cx, dy = this.my - cy, d = Math.sqrt(dx * dx + dy * dy);
+        if (d < 280) { const k = (1 - d / 280) * 0.18; cx += dx * k; cy += dy * k; }
+      }
+      const rad = base * o.r * (0.62 + breathe * 0.5);
+      const c = i % 2 ? glow : core;
+      const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, rad);
+      g.addColorStop(0, rgba(c, 0.15 * gain * breathe));
+      g.addColorStop(0.42, rgba(c, 0.055 * gain * breathe));
+      g.addColorStop(1, rgba(c, 0));
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(cx, cy, rad, 0, 6.2832);
+      ctx.fill();
+    }
+    ctx.globalCompositeOperation = 'source-over';
+  };
+
+  go(route) {
+    this.setState({ route: route, menu: false });
+    window.scrollTo(0, 0);
+    clearTimeout(this.navT);
+    this.navT = setTimeout(() => {
+      this.startField();
+    }, 80);
+  }
+
+  renderVals() {
+    const r = this.state.route;
+    const act = '#F2F4F5', idle = '#9CA3A9';
+    return {
+      fieldRef: this.fieldRef,
+      isHome: r === 'home', isProducts: r === 'products', isWhy: r === 'why', isAF: r === 'af',
+      cHome: r === 'home' ? act : idle, uHome: r === 'home' ? 1 : 0,
+      cProducts: r === 'products' ? act : idle, uProducts: r === 'products' ? 1 : 0,
+      cWhy: r === 'why' ? act : idle, uWhy: r === 'why' ? 1 : 0,
+      cAF: r === 'af' ? act : idle, uAF: r === 'af' ? 1 : 0,
+      hairline: this.state.scrolled ? 1 : 0,
+      wideNav: this.state.wide, narrowNav: !this.state.wide,
+      menuOpen: this.state.menu,
+      toggleMenu: () => this.setState({ menu: !this.state.menu }),
+      goHome: () => this.go('home'),
+      goProducts: () => this.go('products'),
+      goWhy: () => this.go('why'),
+      goAF: () => this.go('af'),
+      applied: this.state.applied, notApplied: !this.state.applied,
+      formError: this.state.error,
+      resetApply: () => this.setState({ applied: false, error: '' }),
+      onApply: (e) => {
+        e.preventDefault();
+        const d = new FormData(e.target);
+        if (!String(d.get('name') || '').trim() || !String(d.get('phone') || '').trim()) {
+          this.setState({ error: 'Name and WhatsApp number are missing. Add both, then apply.' });
+          return;
+        }
+        this.setState({ applied: true, error: '' });
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>
