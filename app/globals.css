@@ -345,6 +345,7 @@
 .tier-film video {
   display: block;
   opacity: 0;
+  transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1);
   /* Held to the left half: every colour in that column clears AA over the
      flame's brightest frame, while the spec strip's tertiary labels — already
      the thinnest contrast on the page — are never lit at all. */
@@ -357,23 +358,32 @@
   mask-image: radial-gradient(78% 88% at 38% 58%, #000 22%, transparent 78%);
 }
 
-/* Hover is the whole point, so the layer only exists where hover does. The
-   width floor keeps it off the stacked layout, where the strip slides under
-   the flame. */
-@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+/* TierFilm owns this state — hover where there is a pointer, scroll position
+   where there is not. The per-clip ceiling is the measured point past which
+   that section's eyebrow and body text drop under 4.5:1 against the footage's
+   brightest frame. */
+.tier-field[data-film="on"] .tier-film video {
+  opacity: var(--film-max, 0.2);
+}
+
+/* Stacked layout: the spec strip drops below the copy instead of sitting
+   beside it, so the dark right-hand column the film used to hide behind is
+   gone. It takes the full width and gives up a third of its ceiling, because
+   text now crosses it everywhere. */
+@media (max-width: 899px) {
   .tier-film video {
-    transition: opacity 620ms cubic-bezier(0.22, 1, 0.36, 1);
+    width: 100%;
+    -webkit-mask-image: radial-gradient(84% 74% at 50% 46%, #000 18%, transparent 76%);
+    mask-image: radial-gradient(84% 74% at 50% 46%, #000 18%, transparent 76%);
   }
 
-  .tier-field:hover .tier-film video {
-    /* Per-clip measured ceiling: above this the section's eyebrow and body
-       text drop under 4.5:1 against that footage's brightest frame. */
-    opacity: var(--film-max, 0.2);
+  .tier-field[data-film="on"] .tier-film video {
+    opacity: calc(var(--film-max, 0.2) * 0.66);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .tier-field:hover .tier-film video {
+  .tier-field[data-film="on"] .tier-film video {
     opacity: 0;
   }
 }

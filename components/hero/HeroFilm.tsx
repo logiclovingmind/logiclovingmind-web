@@ -21,18 +21,39 @@ export function HeroFilm() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if ((navigator as SaveDataNavigator).connection?.saveData) return;
 
-    const attach = () => {
-      video.src = "/hero/continuum.mp4";
-      // A refused autoplay is not an error worth surfacing; the poster stays.
-      void video.play().catch(() => {});
+    const GESTURES = ["pointerdown", "touchstart", "keydown"] as const;
+
+    const stopRetrying = () => {
+      document.removeEventListener("visibilitychange", resume);
+      for (const type of GESTURES) window.removeEventListener(type, resume);
     };
 
+    const resume = () => {
+      if (!video.paused) return stopRetrying();
+      void video.play().then(stopRetrying, () => {});
+    };
+
+    const attach = () => {
+      video.src = "/hero/continuum.mp4";
+      void video.play().catch(() => {});
+      // iOS Low Power Mode and Android battery savers refuse autoplay outright,
+      // which otherwise strands the poster for the whole session. These take the
+      // first gesture or foregrounding that follows and try once more.
+      document.addEventListener("visibilitychange", resume);
+      for (const type of GESTURES)
+        window.addEventListener(type, resume, { passive: true });
+    };
+
+    // Without a timeout an idle callback can be deferred indefinitely — a busy
+    // main thread or a tab opened in the background never yields one.
     const idle =
-      window.requestIdleCallback?.(attach) ?? window.setTimeout(attach, 200);
+      window.requestIdleCallback?.(attach, { timeout: 1200 }) ??
+      window.setTimeout(attach, 200);
 
     return () => {
       if (window.cancelIdleCallback) window.cancelIdleCallback(idle as number);
       else window.clearTimeout(idle as number);
+      stopRetrying();
     };
   }, []);
 
