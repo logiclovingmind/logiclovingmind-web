@@ -42,6 +42,7 @@ export async function applyForSeat(
   }
 
   const application = {
+    form: "automation-forever",
     name,
     company,
     phone,
@@ -50,26 +51,28 @@ export async function applyForSeat(
     receivedAt: new Date().toISOString(),
   };
 
-  // No application backend was specified for launch (claude.md §12.5).
-  // Point this at the real endpoint before the site goes live — until then
-  // applications are recorded in the server log only.
-  const endpoint = process.env.APPLICATION_ENDPOINT;
-  if (!endpoint) {
-    console.warn("APPLICATION_ENDPOINT is not set; application not delivered", application);
+  const endpoint = process.env.DOMINIUS_INTAKE_URL;
+  const secret = process.env.DOMINIUS_INTAKE_SECRET;
+  if (!endpoint || !secret) {
+    console.error("DOMINIUS intake is not configured; application not delivered", application);
     return {
       status: "error",
       message:
-        "The application form is not connected yet. Send the same details on WhatsApp and a founder will pick it up.",
+        "That did not reach us. Send the same details on WhatsApp and a founder will pick it up.",
     };
   }
 
   try {
     const response = await fetch(endpoint, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers: {
+        "content-type": "application/json",
+        authorization: `Bearer ${secret}`,
+      },
       body: JSON.stringify(application),
+      signal: AbortSignal.timeout(10_000),
     });
-    if (!response.ok) throw new Error(`Endpoint returned ${response.status}`);
+    if (!response.ok) throw new Error(`Intake returned ${response.status}`);
   } catch (error) {
     console.error("Application delivery failed", error);
     return {
