@@ -32,16 +32,13 @@ export default function OpengraphImage() {
           <span style={{ fontSize: 26, letterSpacing: "-0.01em" }}>{SITE.name}</span>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            fontSize: 68,
-            lineHeight: 1.04,
-            letterSpacing: "-0.03em",
-            maxWidth: 820,
-          }}
-        >
-          {SITE.positioning}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 92, letterSpacing: "-0.035em", lineHeight: 1 }}>
+            {SITE.tagline}
+          </div>
+          <div style={{ marginTop: 26, fontSize: 26, color: "#9CA3A9", maxWidth: 760 }}>
+            {SITE.positioning}
+          </div>
         </div>
       </div>
     ),

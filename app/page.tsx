@@ -4,7 +4,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { CONTACT, SITE } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: `${SITE.name} — ${SITE.positioning}`,
+  title: `${SITE.name} — ${SITE.tagline}`,
   description: SITE.positioning,
   alternates: { canonical: "/" },
 };
@@ -21,12 +21,16 @@ export default function HomePage() {
         <div className="grain" />
       </div>
 
-      <div className="relative flex w-full max-w-[760px] flex-col items-center">
+      <div className="relative flex w-full max-w-[860px] flex-col items-center">
         <h1 className="font-display display-xl enter w-full text-balance">
-          {SITE.positioning}
+          {SITE.tagline}
         </h1>
 
-        <div className="enter mt-[clamp(36px,6vh,56px)] [--enter-delay:120ms]">
+        <p className="enter mt-[clamp(20px,3vh,28px)] max-w-[46ch] text-pretty text-(length:--fs-body-l) leading-[1.6] [--enter-delay:110ms]">
+          {SITE.positioning}
+        </p>
+
+        <div className="enter mt-[clamp(32px,5vh,48px)] [--enter-delay:220ms]">
           <LinkButton href={CONTACT.whatsappDemo} external>
             Book a demo
           </LinkButton>

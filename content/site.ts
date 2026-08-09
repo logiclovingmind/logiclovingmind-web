@@ -1,7 +1,9 @@
 export const SITE = {
   name: "Logic Loving Mind",
   url: "https://logiclovingmind.com",
-  positioning: "Intelligent systems that run customer conversations.",
+  tagline: "Next Era is NOW",
+  positioning:
+    "Logic Loving Mind helps businesses move from manual work to intelligent systems.",
   location: "Bangalore",
 } as const;
 
