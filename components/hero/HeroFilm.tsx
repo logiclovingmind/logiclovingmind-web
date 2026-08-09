@@ -58,7 +58,7 @@ export function HeroFilm() {
   }, []);
 
   return (
-    <div className="hero-media" aria-hidden="true">
+    <div className="ambient-film" aria-hidden="true">
       <video
         ref={ref}
         poster="/hero/continuum-poster.jpg"
