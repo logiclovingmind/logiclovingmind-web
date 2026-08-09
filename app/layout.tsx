@@ -34,12 +34,10 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default:
-      "WhatsApp lead automation for real estate developers — Logic Loving Mind",
+    default: `${SITE.name} — ${SITE.positioning}`,
     template: `%s — ${SITE.name}`,
   },
-  description:
-    "An operating system that answers every WhatsApp lead in seconds, qualifies buyers and books site visits. Built for real estate companies only. Bangalore.",
+  description: SITE.positioning,
   applicationName: SITE.name,
   alternates: { canonical: "/" },
   openGraph: {
@@ -63,23 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-IN"
       className={`${satoshi.variable} ${instrumentSans.variable} ${plexMono.variable}`}
     >
-      <head>
-        {/* Marks the document as scripted before first paint so scroll reveals
-            can start hidden. Without JS the `js` class never lands and every
-            section renders at its final state. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
-      </head>
       <body>
-        <a
-          href="#main"
-          className="btn btn-primary sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-4 focus:z-[80]"
-        >
-          Skip to content
-        </a>
         <Header />
         <main id="main">{children}</main>
         <Footer />

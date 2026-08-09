@@ -37,14 +37,14 @@ export const PRIVACY: LegalDocument = {
     {
       heading: "Who this is",
       body: [
-        `${SITE.name} is a software company in ${SITE.location}, India. We build and deploy conversation systems for real estate companies. For anything in this policy you can reach us at ${CONTACT.generalEmail}.`,
+        `${SITE.name} is a software company in ${SITE.location}, India. We build and deploy systems that run customer conversations. For anything in this policy you can reach us at ${CONTACT.generalEmail}.`,
       ],
     },
     {
       heading: "What this website collects",
       body: [
-        "One form on this site collects personal data: the Automation Forever application. It asks for your name, your company, your WhatsApp number, your approximate monthly lead volume and the size of your sales team.",
-        "We use it for one purpose — to assess the application and contact you about it. It is not sold, rented or shared for advertising, and it is not used to build a marketing list.",
+        "This site has no forms and no accounts. Nothing you type is collected here, because there is nowhere to type it.",
+        "The single button on the site opens a WhatsApp conversation with us. If you send that message, we hold your WhatsApp number and what you write for one purpose — to answer you and arrange a demo. It is not sold, rented or shared for advertising, and it is not used to build a marketing list.",
       ],
     },
     {
@@ -121,8 +121,8 @@ export const TERMS: LegalDocument = {
     {
       heading: "What we sell",
       body: [
-        "We deploy and support an operating system that runs customer conversations for real estate companies. Scope, price and timeline for any engagement are set out in a separate written proposal, and that document governs the work.",
-        "We build for real estate companies only. We may decline any application without giving a reason.",
+        "We deploy and support an operating system that runs customer conversations. Scope, price and timeline for any engagement are set out in a separate written proposal, and that document governs the work.",
+        "We may decline any engagement without giving a reason.",
       ],
     },
     {
@@ -133,14 +133,6 @@ export const TERMS: LegalDocument = {
       ],
     },
     {
-      heading: "Automation Forever",
-      body: [
-        "Three pilot seats run the platform without a setup fee. A ₹50,000 commitment deposit holds a seat.",
-        "If the system does not produce 30 qualified buyer conversations and 10 site-visit-intent prospects within 30 days of going live, the deposit is returned in full. If it does, you continue on six months of support at ₹50,000. That support fee is separate from the deposit and the deposit is never credited against it.",
-        "The 30-day window starts when the system is live on your number. It depends on you supplying inventory details and routing your existing lead flow to it. If that does not happen, the window starts when it does.",
-      ],
-    },
-    {
       heading: "What you are responsible for",
       body: [
         "You are the sender of every message the system delivers under your number. That means you are responsible for:",
@@ -148,7 +140,7 @@ export const TERMS: LegalDocument = {
       list: [
         "Having a lawful basis to message the people you upload or route to the system",
         "Complying with Meta's WhatsApp Business Messaging Policy and Commerce Policy",
-        "The accuracy of the inventory, pricing and project details the system quotes",
+        "The accuracy of the catalogue, pricing and product details the system quotes",
         "Keeping account credentials secure and telling us promptly if they are exposed",
         "Answering data requests from your own customers, since that data is yours",
       ],
@@ -156,8 +148,8 @@ export const TERMS: LegalDocument = {
     {
       heading: "What we do not promise",
       body: [
-        "The system generates replies using AI models. It can be wrong. It is a qualification and booking layer in front of your sales team, not a substitute for one, and every commercial commitment to a buyer remains yours to confirm.",
-        "Beyond the Automation Forever criteria set out above, we do not guarantee any specific volume of leads, conversions or revenue. We do not guarantee uninterrupted service, because the messaging, AI and hosting platforms it depends on are not ours.",
+        "The system generates replies using AI models. It can be wrong. It is a layer in front of your team, not a substitute for one, and every commercial commitment to a customer remains yours to confirm.",
+        "Unless a signed proposal says otherwise, we do not guarantee any specific volume of leads, conversions or revenue. We do not guarantee uninterrupted service, because the messaging, AI and hosting platforms it depends on are not ours.",
       ],
     },
     {
@@ -170,7 +162,7 @@ export const TERMS: LegalDocument = {
     {
       heading: "Ending the engagement",
       body: [
-        "Either of us can end an ongoing support engagement with 30 days' written notice, unless a signed proposal says otherwise. Fees already paid for a term are not refunded except where the Automation Forever deposit terms above apply.",
+        "Either of us can end an ongoing support engagement with 30 days' written notice, unless a signed proposal says otherwise. Fees already paid for a term are not refunded except where that proposal says they are.",
         "When it ends, your accounts, your data and your infrastructure stay with you. We hand over what we hold and remove our access.",
       ],
     },

@@ -18,7 +18,7 @@ export default function OpengraphImage() {
           padding: 72,
           background: "#07080A",
           backgroundImage:
-            "radial-gradient(90% 60% at 50% 108%, rgba(124,58,255,0.30) 0%, rgba(7,8,10,0) 62%)",
+            "radial-gradient(80% 56% at 50% 110%, rgba(255,255,255,0.12) 0%, rgba(7,8,10,0) 64%)",
           color: "#F2F4F5",
         }}
       >
@@ -32,27 +32,16 @@ export default function OpengraphImage() {
           <span style={{ fontSize: 26, letterSpacing: "-0.01em" }}>{SITE.name}</span>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              fontSize: 68,
-              lineHeight: 1.04,
-              letterSpacing: "-0.03em",
-              maxWidth: 900,
-            }}
-          >
-            Replies in five seconds. Qualifies. Books the site visit.
-          </div>
-          <div
-            style={{
-              marginTop: 28,
-              fontSize: 25,
-              color: "#9CA3A9",
-              maxWidth: 760,
-            }}
-          >
-            {SITE.positioning}
-          </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 68,
+            lineHeight: 1.04,
+            letterSpacing: "-0.03em",
+            maxWidth: 820,
+          }}
+        >
+          {SITE.positioning}
         </div>
       </div>
     ),

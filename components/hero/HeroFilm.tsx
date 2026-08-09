@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 type SaveDataNavigator = Navigator & { connection?: { saveData?: boolean } };
 
 /**
- * The hero film — the mark with the three tier hues circling it.
+ * The hero film — the mark turning, desaturated to grey in CSS.
  *
  * The element ships with a poster but no source, so the markup renders the
  * still on its own: no JavaScript, reduced motion and Save-Data all keep the
