@@ -2,6 +2,9 @@ export const SITE = {
   name: "Logic Loving Mind",
   url: "https://logiclovingmind.com",
   tagline: "Next Era is NOW",
+  /** The word the headline lands on. Set in the bold weight, and the beat the
+   *  opening sequence is timed to. */
+  taglineAccent: "NOW",
   positioning:
     "Logic Loving Mind helps businesses move from manual work to intelligent systems.",
   location: "Bangalore",

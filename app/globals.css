@@ -34,6 +34,14 @@
   --dur-base: 220ms;
   --dur-slow: 360ms;
 
+  /* The opening timeline (--open-void, --word-start, --fire-dur and the rest)
+     is written onto <body> from content/motion.ts, because the accent
+     simulation needs the same numbers as plain milliseconds. */
+
+  /* Where the light sits. Overridden on <html> by the pointer parallax. */
+  --light-x: 50%;
+  --light-y: 104%;
+
   --header-h: 76px;
   --footer-h: 56px;
   --gutter: clamp(24px, 5vw, 72px);
@@ -177,11 +185,37 @@
   /* Achromatic light source. Radial only — a linear wash reads as a banner. */
   background:
     radial-gradient(
-      70% 40% at 50% 104%,
+      70% 40% at var(--light-x) var(--light-y),
       rgba(255, 255, 255, 0.07) 0%,
       transparent 66%
     ),
     var(--color-void);
+}
+
+/* One beat of light on the same source, timed to the last word landing. */
+.ambient-pulse {
+  position: absolute;
+  inset: 0;
+  /* Above the grain, so the beat reads as light rather than as exposure. */
+  z-index: 3;
+  opacity: 0;
+  background: radial-gradient(
+    76% 48% at var(--light-x) var(--light-y),
+    rgba(255, 255, 255, 0.17) 0%,
+    transparent 70%
+  );
+}
+
+/* Lit by the bolts, not by CSS: the canvas sets the opacity directly so the
+   room flashes on the same frame the lightning is drawn. Held at a low ceiling
+   in the simulation, so the field never gets bright enough for the cuts to
+   count as flashes under WCAG 2.3.1. */
+.ambient-flash {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  opacity: 0;
+  background: #fff;
 }
 
 /* The film. Desaturated in the file as well as here: the encode carries flat
@@ -252,11 +286,207 @@
   }
 }
 
+@keyframes llmFieldRise {
+  from {
+    opacity: 0;
+    transform: translateY(2%) scale(1.035);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes llmWordUp {
+  from {
+    transform: translateY(120%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes llmLightPulse {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Releases the accent word's clip the instant its own wipe ends. step-end
+   holds the tight box for the whole run and swaps on the last frame. */
+@keyframes llmAccentClip {
+  from {
+    clip-path: inset(-45% -25% -8% -25%);
+  }
+  to {
+    clip-path: inset(-200% -100% -200% -100%);
+  }
+}
+
+/* How hot the accent word is, 0 to 1. Registered so it can be interpolated
+   and so the glow below is one expression of one number: the simulation says
+   how hot, the stylesheet says what hot looks like. */
+@property --flare {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* The settled state, breathing slowly enough to read as alive not as a loop. */
+@keyframes llmOmni {
+  from {
+    --flare: 0.24;
+  }
+  to {
+    --flare: 0.4;
+  }
+}
+
+/* The moment the last word finishes its wipe. Needs --word-count, which the
+   page sets from the headline itself. */
+.opening {
+  --land: calc(
+    var(--word-start) + (var(--word-count) - 1) * var(--word-step) +
+      var(--word-dur)
+  );
+}
+
+/* Each word wipes up from behind its own clip box, so the line assembles
+   instead of fading in whole. clip-path rather than overflow: only the bottom
+   edge has to clip, so the other three stay open for ascenders, the tight
+   tracking, and anything the accent word glows past its box. */
+.reveal-word {
+  display: inline-block;
+  vertical-align: bottom;
+  clip-path: inset(-45% -25% -8% -25%);
+}
+
+/* The accent word stops being clipped the instant it lands, so its glow is
+   free to leave the box. */
+.accent .reveal-word {
+  clip-path: inset(-200% -100% -200% -100%);
+}
+
+.accent {
+  position: relative;
+  display: inline-block;
+  /* Keeps the aura's negative z-index inside this word instead of letting it
+     fall back to the root, where it would land behind the ambient field. */
+  isolation: isolate;
+}
+
+/* The light the word throws. Soft-edged by the gradient itself rather than by
+   a blur filter, so it can be scaled and faded on the compositor. */
+.accent::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: -1;
+  width: 200%;
+  height: 280%;
+  transform: translate(-50%, -50%) scale(calc(0.85 + 0.5 * var(--flare)));
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(255, 255, 255, 0.34) 0%,
+    rgba(255, 255, 255, 0.1) 44%,
+    transparent 72%
+  );
+  opacity: calc(var(--flare) * 0.9);
+  pointer-events: none;
+}
+
+/* The canvas the fire and the bolts are drawn on. It reaches well above the
+   word because that is where flame and lightning live, and it composites with
+   `screen` so it can only add light to the letters underneath, never mask
+   them — which is what keeps the word legible at full white-out. */
+.accent-flare {
+  position: absolute;
+  left: -35%;
+  bottom: -30%;
+  width: 170%;
+  height: 340%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Everything the word's own glow does, as one expression of --flare. */
+.reveal-em {
+  display: inline-block;
+  font-weight: 700;
+  text-shadow:
+    0 0 calc(0.02em + 0.03em * var(--flare)) rgba(255, 255, 255, var(--flare)),
+    0 0 calc(0.1em + 0.3em * var(--flare))
+      rgba(255, 255, 255, calc(var(--flare) * 0.85)),
+    0 0 calc(0.3em + 0.9em * var(--flare))
+      rgba(255, 255, 255, calc(var(--flare) * 0.55));
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .enter {
     animation: llmIn 720ms var(--ease-out) both;
     animation-delay: var(--enter-delay, 0ms);
   }
+
+  .ambient {
+    animation: llmFieldRise var(--open-field) var(--ease-out) var(--open-void)
+      both;
+  }
+
+  .reveal-word > span {
+    display: inline-block;
+    animation: llmWordUp var(--word-dur) var(--ease-out) both;
+    animation-delay: calc(var(--word-start) + var(--i, 0) * var(--word-step));
+  }
+
+  /* Peaks at 15% of its run, so the delay is pulled back by that much to put
+     the crest exactly on the landing. */
+  .ambient-pulse {
+    animation: llmLightPulse 1100ms var(--ease-ui) calc(var(--land) - 165ms)
+      both;
+  }
+
+  /* Runs for exactly as long as this word takes to arrive, then releases. */
+  .accent .reveal-word {
+    animation: llmAccentClip
+      calc(var(--word-start) + var(--i, 0) * var(--word-step) + var(--word-dur))
+      step-end both;
+  }
+
+  /* Takes over --flare once the canvas has burnt out and released it. No fill
+     mode, so the simulation owns the value right up until this starts. */
+  .accent {
+    animation: llmOmni 4200ms var(--ease-ui)
+      calc(var(--land) + var(--fire-dur) + var(--volt-dur)) infinite alternate;
+  }
+}
+
+/* Reduced motion never runs the canvas, so the word is lit but never burns. */
+@media (prefers-reduced-motion: reduce) {
+  .accent {
+    --flare: 0.3;
+  }
+}
+
+/* The home page opens from black, so the wordmark and the footer wait for the
+   field. The legal pages have no field and are not held back. */
+body:has(.ambient) header .enter {
+  --enter-delay: var(--open-void);
+}
+
+body:has(.ambient) footer.enter {
+  --enter-delay: calc(var(--open-void) + 120ms);
+}
+
+.magnetic {
+  display: inline-block;
+  will-change: transform;
 }
 
 /* ─────────────────────────────────────────────────────────────

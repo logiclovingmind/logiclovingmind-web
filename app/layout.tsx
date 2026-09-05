@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { OrganizationJsonLd } from "@/components/seo/JsonLd";
 import { SITE } from "@/content/site";
+import { OPENING_VARS } from "@/content/motion";
 import "./globals.css";
 
 const satoshi = localFont({
@@ -61,7 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       lang="en-IN"
       className={`${satoshi.variable} ${instrumentSans.variable} ${plexMono.variable}`}
     >
-      <body>
+      <body style={OPENING_VARS}>
         <Header />
         <main id="main">{children}</main>
         <Footer />
