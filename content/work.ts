@@ -76,6 +76,7 @@ export const WORK: WorkItem[] = [
       "283 tests run against the real Workers runtime, not a mock.",
     ],
     stack: "TypeScript · Cloudflare Workers · Durable Objects · Supabase Postgres · React",
+    image: { src: "/work/wa-platform.jpg", alt: "The WhatsApp agent platform desk" },
     links: [
       { label: "github.com/logiclovingmind/wa-agent-platform", href: "https://github.com/logiclovingmind/wa-agent-platform", external: true },
       { label: "Live dashboard: app.logiclovingmind.com", href: "https://app.logiclovingmind.com", external: true },
@@ -197,6 +198,7 @@ export const WORK: WorkItem[] = [
       "85 commits in eight weeks and 11,792 lines of TypeScript. Sessions are stored in Upstash Redis and finances in a Google Sheet, mirrored to Redis for reads.",
     ],
     stack: "Next.js 16 · React 19 · Upstash Redis · Google Sheets / Apps Script · OpenAI-compatible",
+    image: { src: "/work/dominius.jpg", alt: "The DOMINIUS command centre" },
     links: [
       { label: "Read the engineering case study", href: "https://github.com/logiclovingmind/logiclovingmind/blob/main/dominius-case-study.md", external: true },
       { label: "dominius.logiclovingmind.com", href: "https://dominius.logiclovingmind.com", external: true },
@@ -275,6 +277,7 @@ export const WORK: WorkItem[] = [
       "Runs for free and without keys on a Mac through a launchd job. It is in daily use, not a demo.",
     ],
     stack: "Python · ytmusicapi · launchd",
+    image: { src: "/work/music-xp.jpg", alt: "The Music XP explorer dashboard" },
     links: [
       { label: "github.com/logiclovingmind/music-xp", href: "https://github.com/logiclovingmind/music-xp", external: true },
     ],
@@ -392,6 +395,7 @@ export const SELECTED_WORK: SelectedItem[] = [
     action: "Read the code",
     href: "https://github.com/logiclovingmind/wa-agent-platform",
     external: true,
+    image: { src: "/work/wa-platform.jpg", alt: "The WhatsApp agent platform desk" },
   },
   {
     title: "IZI — CRM Standard",
@@ -454,6 +458,7 @@ export const SELECTED_WORK: SelectedItem[] = [
     action: "Read the case study",
     href: "https://github.com/logiclovingmind/logiclovingmind/blob/main/dominius-case-study.md",
     external: true,
+    image: { src: "/work/dominius.jpg", alt: "The DOMINIUS command centre" },
   },
   {
     title: "Daily Fresh Music",
@@ -462,5 +467,6 @@ export const SELECTED_WORK: SelectedItem[] = [
     action: "See the repo",
     href: "https://github.com/logiclovingmind/music-xp",
     external: true,
+    image: { src: "/work/music-xp.jpg", alt: "The Music XP explorer dashboard" },
   },
 ];
