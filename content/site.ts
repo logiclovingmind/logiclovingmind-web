@@ -6,7 +6,7 @@ export const SITE = {
    *  opening sequence is timed to. */
   taglineAccent: "NOW",
   positioning:
-    "Logic Loving Mind is an automation studio in Bangalore. We design, build and deploy the systems that run the work — WhatsApp agents, operating systems and products, each one built against a real process and shipped until it runs.",
+    "Logic Loving Mind is an automation studio in Bangalore. We build WhatsApp AI agents, operating systems and software products that take over work normally done by hand. Every project starts from a process we have observed in a real business, and it ships only when it works.",
   location: "Bangalore",
 } as const;
 
@@ -18,7 +18,7 @@ export const CONTACT = {
   supportEmail: "support@logiclovingmind.com",
 } as const;
 
-/** Unlinked from the primary surface but still indexed — Meta will not approve
+/** Unlinked from the primary surface but still indexed. Meta will not approve
  *  a WhatsApp Cloud API application without a reachable privacy policy URL. */
 export const LEGAL_ROUTES = [
   { href: "/privacy", label: "Privacy" },

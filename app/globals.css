@@ -34,9 +34,9 @@
   --dur-base: 220ms;
   --dur-slow: 360ms;
 
-  /* The opening timeline (--open-void, --word-start, --fire-dur and the rest)
-     is written onto <body> from content/motion.ts, because the accent
-     simulation needs the same numbers as plain milliseconds. */
+  /* The opening timeline (--open-void, --word-start and the rest) is written
+     onto <body> from content/motion.ts, because the entrance needs the same
+     numbers as plain milliseconds. */
 
   /* Where the light sits. Overridden on <html> by the pointer parallax. */
   --light-x: 50%;
@@ -63,6 +63,12 @@
 
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  /* Anchored groups (the /work sections) land clear of the fixed header. */
+  [id] {
+    scroll-margin-top: calc(var(--header-h) + 8px);
   }
 
   body {
@@ -227,18 +233,6 @@
     rgba(255, 255, 255, 0.17) 0%,
     transparent 70%
   );
-}
-
-/* Lit by the bolts, not by CSS: the canvas sets the opacity directly so the
-   room flashes on the same frame the lightning is drawn. Held at a low ceiling
-   in the simulation, so the field never gets bright enough for the cuts to
-   count as flashes under WCAG 2.3.1. */
-.ambient-flash {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  opacity: 0;
-  background: #fff;
 }
 
 /* The film. Desaturated in the file as well as here: the encode carries flat
@@ -425,20 +419,6 @@
   pointer-events: none;
 }
 
-/* The canvas the fire and the bolts are drawn on. It reaches well above the
-   word because that is where flame and lightning live, and it composites with
-   `screen` so it can only add light to the letters underneath, never mask
-   them — which is what keeps the word legible at full white-out. */
-.accent-flare {
-  position: absolute;
-  left: -35%;
-  bottom: -30%;
-  width: 170%;
-  height: 340%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-}
-
 /* Everything the word's own glow does, as one expression of --flare. */
 .reveal-em {
   display: inline-block;
@@ -482,11 +462,11 @@
       step-end both;
   }
 
-  /* Takes over --flare once the canvas has burnt out and released it. No fill
-     mode, so the simulation owns the value right up until this starts. */
+  /* Takes over --flare the moment the word lands, and holds it there: the
+     glow is steady, not a burn. No fill mode trivia — the word is simply lit
+     from the landing beat onward. */
   .accent {
-    animation: llmOmni 4200ms var(--ease-ui)
-      calc(var(--land) + var(--fire-dur) + var(--volt-dur)) infinite alternate;
+    animation: llmOmni 4200ms var(--ease-ui) var(--land) infinite alternate;
   }
 }
 
@@ -494,6 +474,43 @@
 @media (prefers-reduced-motion: reduce) {
   .accent {
     --flare: 0.3;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   Scroll reveals — below-the-fold content rises in as it enters
+   the viewport. Driven by pure CSS scroll timelines, so there is
+   no observer and no hydration dependency. Browsers without
+   support simply keep the content visible and static; the page
+   never depends on the effect.
+   ───────────────────────────────────────────────────────────── */
+.reveal-view {
+  opacity: 1;
+}
+
+@supports (animation-timeline: view()) {
+  @keyframes llmRevealUp {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .reveal-view {
+    animation: llmRevealUp linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 36%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-view {
+    animation: none;
+    opacity: 1;
   }
 }
 

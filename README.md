@@ -23,12 +23,19 @@ there to hold attention through the explanation, not to decorate it.
 
 - **A continuous background field** rendered edge to edge across the whole document
   rather than per-section, so scrolling reads as one surface instead of stacked bands.
-- **A custom motion layer** — reveal-on-enter headlines, a pointer-tracking light, an
-  accent flare and a magnetic call-to-action — built directly rather than pulled from
-  an animation library, to keep the bundle small.
+- **A custom motion layer** — reveal-on-enter headlines, a pointer-tracking light, a
+  steady accent glow and a magnetic call-to-action — built directly rather than
+  pulled from an animation library, to keep the bundle small.
+- **Scroll-driven reveals** below the fold, wired with pure CSS scroll timelines
+  (no observer, no hydration dependency), so the page can never depend on the
+  effect.
 - **A portfolio data model** in `content/work.ts`: every project carries a status tag
   (`Live`, `Public`, `Private`, `In progress`), detail bullets, a stack line and
   links. Private repos render as screen-share invites instead of dead anchors.
+- **Real product screenshots**, where a system has a reachable public UI. The shots
+  are captures of the actual running interface, edged and framed in the site's
+  hairline style; everything else renders as a designed monochrome cover, never a
+  fake mock-up.
 - **Privacy policy and terms pages**, which are a hard requirement for Meta WhatsApp
   Business API approval, not an afterthought.
 - Applications submitted here route into DOMINIUS, the internal operating system that

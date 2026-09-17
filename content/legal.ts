@@ -44,7 +44,7 @@ export const PRIVACY: LegalDocument = {
       heading: "What this website collects",
       body: [
         "This site has no forms and no accounts. Nothing you type is collected here, because there is nowhere to type it.",
-        "The single button on the site opens a WhatsApp conversation with us. If you send that message, we hold your WhatsApp number and what you write for one purpose — to answer you and arrange a demo. It is not sold, rented or shared for advertising, and it is not used to build a marketing list.",
+        "The single button on the site opens a WhatsApp conversation with us. If you send that message, we hold your WhatsApp number and what you write for one purpose: to answer you and arrange a demo. It is not sold, rented or shared for advertising, and it is not used to build a marketing list.",
       ],
     },
     {
@@ -59,7 +59,7 @@ export const PRIVACY: LegalDocument = {
       body: [
         "When we deploy a system for a client, the Meta Business account, the WhatsApp Cloud API number, the AI provider accounts and the server are all registered to that client. The conversation data lives in their accounts and their database.",
         "For that data the client is the data fiduciary. We act only as a processor, on their instructions, for as long as they engage us for support. We do not use client conversation data to train models, and we do not reuse it for any other client.",
-        "If you are a buyer who has messaged one of our clients on WhatsApp and want your data removed, contact that company directly — they control it. If you cannot reach them, write to us and we will pass the request on.",
+        "If you are a buyer who has messaged one of our clients on WhatsApp and want your data removed, contact that company directly. They control it. If you cannot reach them, write to us and we will pass the request on.",
       ],
     },
     {

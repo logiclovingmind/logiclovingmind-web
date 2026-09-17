@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { WORK, WORK_GROUPS, WORK_STANDFIRST, type WorkItem } from "@/content/work";
 import { CONTACT } from "@/content/site";
@@ -41,19 +42,71 @@ function WorkLinks({ item }: { item: WorkItem }) {
   );
 }
 
+/** A real UI screenshot when the system has a public interface, otherwise a
+ *  designed cover. Never a mock-up: private systems get a cover, not a fake. */
+function WorkVisual({ item }: { item: WorkItem }) {
+  const primary = item.links.find((link) => link.href);
+
+  if (item.image) {
+    return (
+      <a
+        href={primary?.href ?? "#"}
+        target={primary ? "_blank" : undefined}
+        rel={primary ? "noopener noreferrer" : undefined}
+        className="block overflow-hidden border border-line bg-lift transition duration-300 ease-(--ease-out) hover:border-line-emphasis"
+      >
+        <div className="border-b border-line">
+          <Image
+            src={item.image.src}
+            alt={item.image.alt}
+            width={1440}
+            height={900}
+            loading="lazy"
+            className="aspect-[16/10] w-full object-cover object-top"
+          />
+        </div>
+        <span className="font-mono flex items-center justify-between px-5 py-3 text-[11px] tracking-[0.08em] text-text-secondary">
+          <span>{item.tag}</span>
+          <span className="inline-flex items-center gap-1.5">
+            Open <span aria-hidden="true">↗</span>
+          </span>
+        </span>
+      </a>
+    );
+  }
+
+  return (
+    <div className="relative flex aspect-[16/10] flex-col justify-between overflow-hidden border border-line-strong bg-lift p-6">
+      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-tertiary">
+        {item.tag}
+      </p>
+      <span
+        aria-hidden="true"
+        className="font-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[128px] leading-none text-text-tertiary opacity-[0.16]"
+      >
+        {item.title[0]}
+      </span>
+      <p className="font-mono relative text-[11px] tracking-[0.04em] text-text-tertiary">
+        {item.stack}
+      </p>
+    </div>
+  );
+}
+
 function WorkGroupSection({ id, title, blurb }: { id: string; title: string; blurb: string }) {
   return (
     <section id={id} className="border-t border-line px-(--gutter) py-[clamp(48px,7vw,88px)]">
       <div className="mx-auto grid max-w-[1120px] gap-x-[clamp(32px,5vw,72px)] gap-y-[clamp(28px,4vw,44px)] lg:grid-cols-12">
-        <div className="lg:col-span-4">
+        <div className="reveal-view lg:col-span-4">
           <p className="eyebrow mb-3">{id}</p>
           <h2 className="font-display heading">{title}</h2>
           <p className="mt-4 max-w-[34ch] text-pretty text-text-secondary">{blurb}</p>
         </div>
-        <div className="flex flex-col gap-[clamp(36px,4.5vw,56px)] lg:col-span-8">
+        <div className="flex flex-col gap-[clamp(40px,5vw,64px)] lg:col-span-8">
           {WORK.filter((item) => item.group === id).map((item) => (
-            <article key={item.title}>
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <article key={item.title} className="reveal-view">
+              <WorkVisual item={item} />
+              <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <h3 className="font-display heading">{item.title}</h3>
                 <span className={`chip ${isLive(item) ? "chip-live" : ""}`}>{item.tag}</span>
               </div>
@@ -95,10 +148,10 @@ export default function WorkPage() {
       ))}
 
       <section className="border-t border-line px-(--gutter) py-[clamp(48px,7vw,96px)]">
-        <div className="measure">
+        <div className="measure reveal-view">
           <h2 className="font-display heading">Want one of these for your business?</h2>
           <p className="mt-4 max-w-[56ch] text-pretty">
-            The fastest way to find out whether this fits is to send a message and
+            The quickest way to see if this suits your business is to send a message and
             watch how the agent replies.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
