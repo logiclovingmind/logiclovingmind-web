@@ -6,7 +6,7 @@ export const SITE = {
    *  opening sequence is timed to. */
   taglineAccent: "NOW",
   positioning:
-    "Logic Loving Mind helps businesses move from manual work to intelligent systems.",
+    "Logic Loving Mind is an automation studio in Bangalore. We design, build and deploy the systems that run the work — WhatsApp agents, operating systems and products, each one built against a real process and shipped until it runs.",
   location: "Bangalore",
 } as const;
 

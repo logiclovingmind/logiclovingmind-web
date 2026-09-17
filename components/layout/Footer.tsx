@@ -5,6 +5,9 @@ export function Footer() {
   return (
     <footer className="enter font-mono flex min-h-[var(--footer-h)] flex-wrap items-center justify-center gap-x-5 gap-y-1.5 px-(--gutter) py-4 text-[12px] tracking-[0.06em] text-text-secondary">
       <span>{SITE.location}</span>
+      <Link href="/work" className="no-underline hover:text-text">
+        Work
+      </Link>
       {LEGAL_ROUTES.map((route) => (
         <Link key={route.href} href={route.href} className="no-underline hover:text-text">
           {route.label}
