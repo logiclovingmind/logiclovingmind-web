@@ -7,6 +7,7 @@ import { PointerLight } from "@/components/hero/PointerLight";
 import { RevealHeadline } from "@/components/hero/RevealHeadline";
 import { LinkButton } from "@/components/ui/Button";
 import { Magnetic } from "@/components/ui/Magnetic";
+import { WorkCover } from "@/components/ui/WorkCover";
 import { CONTACT, SITE } from "@/content/site";
 import { SELECTED_WORK } from "@/content/work";
 
@@ -103,13 +104,13 @@ export default function HomePage() {
                     />
                   </div>
                 ) : (
-                  <div className="relative flex aspect-[16/10] items-center justify-center overflow-hidden border-b border-line bg-lift">
-                    <span
-                      aria-hidden="true"
-                      className="font-display text-[88px] leading-none text-text-tertiary opacity-[0.18]"
-                    >
-                      {item.title[0]}
-                    </span>
+                  <div className="border-b border-line">
+                    <WorkCover
+                      monogram={item.title[0]}
+                      tag={item.groupLabel}
+                      note="No public interface"
+                      className="border-0"
+                    />
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-5">

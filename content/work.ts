@@ -24,6 +24,8 @@ export type WorkItem = {
   links: WorkLink[];
   /** A real UI screenshot, where the system has a reachable public interface. */
   image?: { src: string; alt: string };
+  /** Why there is no screenshot, shown on the cover plate when image is absent. */
+  coverNote?: string;
 };
 
 export const WORK_STANDFIRST =
@@ -93,6 +95,7 @@ export const WORK: WorkItem[] = [
       "Meta sends all messages to one webhook and events are routed by phone number. CRM data is scoped by tenant, with a 14-day trial and simple billing.",
     ],
     stack: "Node/Express · SQLite · WhatsApp Cloud API · Google Calendar OAuth",
+    image: { src: "/work/agent-saas.jpg", alt: "Tenant user management in the AGENT SaaS dashboard" },
     links: [{ label: "Private. Open to a screen share." }],
   },
   {
@@ -106,6 +109,7 @@ export const WORK: WorkItem[] = [
       "Deploy scripts install Node, Caddy and fail2ban, generate secrets and set up HTTPS automatically.",
     ],
     stack: "Node/Express · React · SQLite · Caddy · DigitalOcean",
+    image: { src: "/work/real-estate-suite.jpg", alt: "The Real Estate Suite projects and inventory view" },
     links: [{ label: "Private. Open to a screen share." }],
   },
   {
@@ -120,6 +124,7 @@ export const WORK: WorkItem[] = [
       "Books appointments into Google Calendar and stops replying once a human has taken over.",
     ],
     stack: "Node 20 · better-sqlite3 · gpt-4o-mini (AICredits) · WhatsApp Cloud API · Google Apps Script",
+    image: { src: "/work/real-estate-agent.jpg", alt: "The real-estate agent console, mid-qualification" },
     links: [
       { label: "Live demo: whatsapp-demo-agent.vercel.app", href: "https://whatsapp-demo-agent.vercel.app", external: true },
       { label: "github.com/logiclovingmind/real-estate-whatsapp-agent", href: "https://github.com/logiclovingmind/real-estate-whatsapp-agent", external: true },
@@ -136,6 +141,7 @@ export const WORK: WorkItem[] = [
       "Books time slots against the institute's real availability. It scores leads HOT, WARM or COLD and accepts voice notes via Whisper.",
     ],
     stack: "Node 20 · Express · Whisper · Google Sheets logging · WhatsApp Cloud API",
+    image: { src: "/work/admissions-agent.jpg", alt: "The BrightPath Academy admissions agent answering on WhatsApp" },
     links: [
       { label: "Live demo: education-ai-lemon.vercel.app", href: "https://education-ai-lemon.vercel.app", external: true },
     ],
@@ -182,6 +188,7 @@ export const WORK: WorkItem[] = [
       "Education ships as a live admissions agent and the clinic variant includes the medical advice guardrail. Every vertical logs leads into the client's own Google Sheet.",
     ],
     stack: "Config-driven Node agents · WhatsApp Cloud API · Google Sheets · vercel.json deploys",
+    coverNote: "Runs on WhatsApp · no web interface",
     links: [
       { label: "github.com/logiclovingmind/real-estate-whatsapp-agent-template", href: "https://github.com/logiclovingmind/real-estate-whatsapp-agent-template", external: true },
     ],
@@ -233,6 +240,7 @@ export const WORK: WorkItem[] = [
       "It deliberately avoids Google Calendar, using an offline-capable PWA with .ics files instead.",
     ],
     stack: "Node 20 ESM · better-sqlite3 · React/Vite PWA · VAPID web push",
+    image: { src: "/work/izi-os.jpg", alt: "The IZI OS pipeline" },
     links: [{ label: "Private. One instance per client; open to a screen share." }],
   },
   {
@@ -247,6 +255,7 @@ export const WORK: WorkItem[] = [
       "Backups are encrypted with restic. It also generates cost-sheet PDFs and lets you switch off an agent in one step.",
     ],
     stack: "Node/Express · PostgreSQL 16 · TOTP 2FA · Tailscale/WireGuard · restic",
+    image: { src: "/work/eon.jpg", alt: "The EON Private Fortress OS dashboard" },
     links: [{ label: "Private by design. Open to a screen share." }],
   },
   {
@@ -294,6 +303,7 @@ export const WORK: WorkItem[] = [
       "A report is released only after a two-step pathologist signature. Amendments replace the report instead of editing it.",
     ],
     stack: "React 19 · Supabase (Postgres + RLS) · Cloudflare Pages",
+    image: { src: "/work/clear-reports.jpg", alt: "The Clear Reports lab worklist" },
     links: [{ label: "Private. Deployment in progress; open to a screen share." }],
   },
   {
@@ -307,6 +317,7 @@ export const WORK: WorkItem[] = [
       "A synthetic replay harness measures about 61 hours of warning lead time compared with observed enforcement.",
     ],
     stack: "TypeScript · tsx · better-sqlite3 · zero runtime deps",
+    coverNote: "A command-line monitor · no web interface",
     links: [
       { label: "github.com/logiclovingmind/wa-sender-health", href: "https://github.com/logiclovingmind/wa-sender-health", external: true },
     ],
@@ -322,6 +333,7 @@ export const WORK: WorkItem[] = [
       "It is plain Markdown with a sync script, so the notes stay yours and can be used to produce other things.",
     ],
     stack: "Obsidian · Markdown · shell",
+    coverNote: "A Markdown vault · no web interface",
     links: [{ label: "Private. Personal vault; open to a screen share." }],
   },
   {
@@ -335,6 +347,7 @@ export const WORK: WorkItem[] = [
       "The site uses real trip inventory only. No stock imagery, no invented testimonials and no invented prices.",
     ],
     stack: "Static HTML/CSS/JS · Three.js r161 · vendored GLB · no build step",
+    image: { src: "/work/sahas-tourism.jpg", alt: "The SAHAS Tourism homepage" },
     links: [
       { label: "github.com/logiclovingmind/sahas-tourism-site", href: "https://github.com/logiclovingmind/sahas-tourism-site", external: true },
       { label: "sahastourism.com", href: "https://www.sahastourism.com", external: true },
@@ -386,8 +399,45 @@ export type SelectedItem = {
   image?: { src: string; alt: string };
 };
 
-/** Homepage tiles, one per group so the breadth is visible above the fold. */
+
+/** Homepage tiles, strongest interface first. Every tile leads with a real
+ *  capture of the system it describes; a private system links to its own entry
+ *  on the work page rather than nowhere. */
 export const SELECTED_WORK: SelectedItem[] = [
+  {
+    title: "Real-estate sales agent",
+    groupLabel: "Agent · live demo",
+    line: "Answers a property enquiry in English, Hinglish or Gujarati and files it as a structured lead. The console shows the transcript beside the fields the agent filled in.",
+    action: "Open the console",
+    href: "https://whatsapp-demo-agent.vercel.app",
+    external: true,
+    image: { src: "/work/real-estate-agent.jpg", alt: "The real-estate agent console, mid-qualification" },
+  },
+  {
+    title: "Admissions agent",
+    groupLabel: "Agent · live demo",
+    line: "Takes a prospective student from enquiry to enrolment inside one WhatsApp thread, reading payment screenshots and booking a counselling slot.",
+    action: "Watch it answer",
+    href: "https://education-ai-lemon.vercel.app",
+    external: true,
+    image: { src: "/work/admissions-agent.jpg", alt: "The BrightPath Academy admissions agent answering on WhatsApp" },
+  },
+  {
+    title: "IZI OS",
+    groupLabel: "Operating system",
+    line: "A Today screen that acts rather than lists: every open lead with its stage, its requirement and who last touched it.",
+    action: "See the detail",
+    href: "/work#systems",
+    image: { src: "/work/izi-os.jpg", alt: "The IZI OS pipeline" },
+  },
+  {
+    title: "EON — Private Fortress",
+    groupLabel: "Operating system",
+    line: "A brokerage operating system that is invisible to the internet. Every read, edit and export lands in an append-only audit log.",
+    action: "See the detail",
+    href: "/work#systems",
+    image: { src: "/work/eon.jpg", alt: "The EON Private Fortress OS dashboard" },
+  },
   {
     title: "WhatsApp Agent Platform",
     groupLabel: "Agent platform",
@@ -398,40 +448,20 @@ export const SELECTED_WORK: SelectedItem[] = [
     image: { src: "/work/wa-platform.jpg", alt: "The WhatsApp agent platform desk" },
   },
   {
-    title: "IZI — CRM Standard",
-    groupLabel: "Operating system",
-    line: "Brokerage operations software built to run on a low-cost server, with agent intake feeding leads straight in.",
-    action: "Use the repo",
-    href: "https://github.com/logiclovingmind/crm-standard",
-    external: true,
-    image: { src: "/work/crm-standard.jpg", alt: "The IZI operating system dashboard" },
+    title: "SAHAS Tourism",
+    groupLabel: "Site · delivered",
+    line: "A site built around a flying bird: it reveals each headline letter by letter, then perches in the gutter. Real trip inventory only.",
+    action: "See the detail",
+    href: "/work#sites",
+    image: { src: "/work/sahas-tourism.jpg", alt: "The SAHAS Tourism homepage" },
   },
   {
-    title: "Clinic front desk",
-    groupLabel: "Agent · live",
-    line: "Takes appointments and answers logistics questions, and gives no medical advice even when asked.",
-    action: "Try the demo",
-    href: "https://akhtar-lifecare-demo.vercel.app",
-    external: true,
-    image: { src: "/work/clinic-front-desk.jpg", alt: "The Akhtar Lifecare clinic front-desk site" },
-  },
-  {
-    title: "Salon booking site",
-    groupLabel: "Agent · live",
-    line: "A booking-first site where the menu, staff and availability belong to the owner, not the code.",
-    action: "Visit the site",
-    href: "https://reflection-beauty-salon.vercel.app",
-    external: true,
-    image: { src: "/work/salon-booking.jpg", alt: "The Reflection Beauty Salon booking site" },
-  },
-  {
-    title: "Pocket Split",
-    groupLabel: "Product · live",
-    line: "An offline-first expense splitter that works with no signal.",
-    action: "Open it",
-    href: "https://pocket-split-six.vercel.app",
-    external: true,
-    image: { src: "/work/pocket-split.jpg", alt: "The Pocket Split expense app" },
+    title: "Clear Reports",
+    groupLabel: "Reporting · in progress",
+    line: "Cloud reporting for pathology labs on free tiers. Row-level security holds the tenant boundary, and a report is released only after a two-step signature.",
+    action: "See the detail",
+    href: "/work#products",
+    image: { src: "/work/clear-reports.jpg", alt: "The Clear Reports lab worklist" },
   },
   {
     title: "Scroll-driven 3D site",
@@ -443,6 +473,33 @@ export const SELECTED_WORK: SelectedItem[] = [
     image: { src: "/work/scroll-3d.jpg", alt: "The scroll-driven 3D site" },
   },
   {
+    title: "IZI — CRM Standard",
+    groupLabel: "Operating system",
+    line: "Brokerage operations software built to run on a low-cost server, with agent intake feeding leads straight in.",
+    action: "Use the repo",
+    href: "https://github.com/logiclovingmind/crm-standard",
+    external: true,
+    image: { src: "/work/crm-standard.jpg", alt: "The IZI operating system dashboard" },
+  },
+  {
+    title: "Pocket Split",
+    groupLabel: "Product · live",
+    line: "An offline-first expense splitter that keeps working with no signal, then reconciles when the connection returns.",
+    action: "Open it",
+    href: "https://pocket-split-six.vercel.app",
+    external: true,
+    image: { src: "/work/pocket-split.jpg", alt: "The Pocket Split expense app" },
+  },
+  {
+    title: "DOMINIUS",
+    groupLabel: "Internal OS",
+    line: "The studio's command centre, with two AI agents built to different permission levels on purpose.",
+    action: "Read the case study",
+    href: "https://github.com/logiclovingmind/logiclovingmind/blob/main/dominius-case-study.md",
+    external: true,
+    image: { src: "/work/dominius.jpg", alt: "The DOMINIUS command centre" },
+  },
+  {
     title: "This site",
     groupLabel: "Site · live",
     line: "A single monochrome surface with a custom motion layer, built without an animation library.",
@@ -450,23 +507,5 @@ export const SELECTED_WORK: SelectedItem[] = [
     href: "https://github.com/logiclovingmind/logiclovingmind-web",
     external: true,
     image: { src: "/work/this-site.jpg", alt: "The logiclovingmind.com homepage" },
-  },
-  {
-    title: "DOMINIUS",
-    groupLabel: "Internal OS",
-    line: "The studio's command centre, with two AI agents built to different permission levels.",
-    action: "Read the case study",
-    href: "https://github.com/logiclovingmind/logiclovingmind/blob/main/dominius-case-study.md",
-    external: true,
-    image: { src: "/work/dominius.jpg", alt: "The DOMINIUS command centre" },
-  },
-  {
-    title: "Daily Fresh Music",
-    groupLabel: "Automation",
-    line: "A daily playlist across 23 languages, tuned by a taste model your likes sharpen.",
-    action: "See the repo",
-    href: "https://github.com/logiclovingmind/music-xp",
-    external: true,
-    image: { src: "/work/music-xp.jpg", alt: "The Music XP explorer dashboard" },
   },
 ];

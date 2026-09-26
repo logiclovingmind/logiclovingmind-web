@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { WORK, WORK_GROUPS, WORK_STANDFIRST, type WorkItem } from "@/content/work";
 import { CONTACT } from "@/content/site";
+import { WorkCover } from "@/components/ui/WorkCover";
 
 export const metadata: Metadata = {
   title: "Work",
@@ -76,20 +77,11 @@ function WorkVisual({ item }: { item: WorkItem }) {
   }
 
   return (
-    <div className="relative flex aspect-[16/10] flex-col justify-between overflow-hidden border border-line-strong bg-lift p-6">
-      <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-text-tertiary">
-        {item.tag}
-      </p>
-      <span
-        aria-hidden="true"
-        className="font-display pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[128px] leading-none text-text-tertiary opacity-[0.16]"
-      >
-        {item.title[0]}
-      </span>
-      <p className="font-mono relative text-[11px] tracking-[0.04em] text-text-tertiary">
-        {item.stack}
-      </p>
-    </div>
+    <WorkCover
+      monogram={item.title[0]}
+      tag={item.tag}
+      note={item.coverNote ?? "No public interface"}
+    />
   );
 }
 

@@ -32,10 +32,11 @@ there to hold attention through the explanation, not to decorate it.
 - **A portfolio data model** in `content/work.ts`: every project carries a status tag
   (`Live`, `Public`, `Private`, `In progress`), detail bullets, a stack line and
   links. Private repos render as screen-share invites instead of dead anchors.
-- **Real product screenshots**, where a system has a reachable public UI. The shots
-  are captures of the actual running interface, edged and framed in the site's
-  hairline style; everything else renders as a designed monochrome cover, never a
-  fake mock-up.
+- **Real product screenshots**, taken from the running interface of each system —
+   public demos captured live, private systems captured from the real deployment on
+   this machine. Every shot in `public/work/` is normalised to exactly 1440×900, so
+   the 16:10 tile crops nothing on either page. Anything without an interface to
+   photograph gets a cover plate that states why, never a fake mock-up.
 - **Privacy policy and terms pages**, which are a hard requirement for Meta WhatsApp
   Business API approval, not an afterthought.
 - Applications submitted here route into DOMINIUS, the internal operating system that
